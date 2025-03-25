@@ -25,28 +25,54 @@ handleSelect(eventKey) {
             full-time <b> Master's of Science</b> in <b>Computer Science </b>at{" "}
             <a href="https://www.khoury.northeastern.edu/">Northeastern University</a>.
 
-
-
-
-
+        </p>
+    );
+    const two = (
+        <p>
+            Outside of work, I'm interested in following the developments of
+            science. I also enjoy creating things: art ,phorogpthy, dancing, paino.
 
         </p>
-    )
+    );
+
+    const tech_stack = [
+        "Typescript",
+        "Python",
+        "React.js",
+        "Java",
+        "Javascript ES6+",
+        "C"
+    ];
+
+    return (
+        <div id="about">
+          <FadeInSection>
+            <div className="section-header ">
+              <span className="section-title">/ about me</span>
+            </div>
+            <div className="about-content">
+              <div className="about-description">
+                {[one]}
+                {"Here are some technologies I have been working with:"}
+                <ul className="tech-stack">
+                  {tech_stack.map(function (tech_item, i) {
+                    return (
+                      <FadeInSection delay={`${i + 1}00ms`}>
+                        <li>{tech_item}</li>
+                      </FadeInSection>
+                    );
+                  })}
+                </ul>
+                {[two]}
+              </div>
+              <div className="about-image">
+                <img alt="Gazi Jarin" src={"/assets/me2.jpg"} />
+              </div>
+            </div>
+          </FadeInSection>
+        </div>
+      );
+    }
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-}
+  
+  export default About;
