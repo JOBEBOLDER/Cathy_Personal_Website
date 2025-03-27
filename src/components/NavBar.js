@@ -32,9 +32,6 @@ class NavBar extends React.Component {
               <Nav.Link href="https://www.linkedin.com/in/jieyao-chen/" target="_blank">
                 <LinkedInIcon style={{ fontSize: 21 }}></LinkedInIcon>
               </Nav.Link>
-              <Nav.Link href="https://medium.com/@gazijarin.ai" target="_blank">
-                <BorderColorIcon style={{ fontSize: 20 }}></BorderColorIcon>
-              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>

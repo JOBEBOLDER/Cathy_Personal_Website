@@ -14,8 +14,11 @@ function App() {
     <div className="App">
       <NavBar></NavBar>
       <div id="content">
-        
-
+        <Intro></Intro>
+        <About></About>
+        <Experience></Experience>
+        <Projects></Projects>
+        <Credits></Credits>
       </div>
     </div>
   );
