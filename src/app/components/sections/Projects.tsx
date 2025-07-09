@@ -10,76 +10,75 @@ const Projects = () => {
   // 重点项目数据
   const spotlightProjects = [
     {
-      title: "AI 设计助手",
-      desc: "一个基于机器学习的设计工具，能够自动生成UI组件和颜色搭配方案。使用React和TensorFlow.js构建，帮助设计师提高工作效率。",
-      techStack: "React.js, TensorFlow.js, Node.js, MongoDB",
-      githubLink: "https://github.com/yourusername/ai-design-assistant",
+      title: "High-Concurrency Commerce Platform",
+      desc: "Modern e-commerce website design with complete functionality such as shopping cart, payment process, user management and more.",
+      techStack: "Java, Redis, and Spring Boot ",
+      githubLink: "https://github.com/JOBEBOLDER/High-Concurrency-Commerce-Platform",
       liveLink: "https://ai-design-demo.vercel.app",
       image: "/assets/project1.png", // 你需要添加项目图片
-      category: "AI & Design"
+      category: " Code & Design"
     },
     {
-      title: "实时协作平台",
-      desc: "一个多人实时协作的白板应用，支持绘图、文字、形状等多种工具。集成了WebRTC和Socket.io实现低延迟的实时同步。",
+      title: "FoodTech-skyBite-System",
+      desc: "As an extension of my Superland project, I developed the FoodTech “SkyBite” System to support the operations of the Superland community. I referred to real-world enterprise-level SpringBoot + SSM projects to better understand complete and practical business requirements.",
       techStack: "Next.js, Socket.io, WebRTC, TypeScript",
-      githubLink: "https://github.com/yourusername/collab-whiteboard",
+      githubLink: "https://github.com/JOBEBOLDER/Cloud-Native-FoodTech-SkyBite-System",
       liveLink: "https://collab-whiteboard-demo.vercel.app",
       image: "/assets/project2.png",
       category: "Web App"
     },
     {
-      title: "3D 作品集生成器",
-      desc: "使用Three.js创建的交互式3D作品集展示工具，允许用户拖拽、旋转查看项目，并支持自定义主题和动画效果。",
-      techStack: "Three.js, React Three Fiber, Framer Motion",
-      githubLink: "https://github.com/yourusername/3d-portfolio-generator",
-      liveLink: "https://3d-portfolio-demo.vercel.app",
-      image: "/assets/project3.png",
-      category: "3D & Creative"
+    title: "Kanbas Interactive System",
+    desc: "A web-based canvas simulation system built with Node.js, Express, MongoDB, React, and Redux, achieving 25% increase in user satisfaction through improved performance and responsive design. Features RESTful APIs for efficient data storage and retrieval with authentication and user profile management.",
+    techStack: "React.js, Redux, Node.js, MongoDB, Express",
+    githubLink: "https://github.com/JOBEBOLDER/kanbas-react-web-app",
+    liveLink: "https://kanbas-react-web-app-jieyao.netlify.app", // 添加你的 Netlify 链接如果有的话
+    image: "/assets/project3.png",
+    category: "Full Stack Web App"
     }
   ];
 
   // 其他项目数据
   const otherProjects = [
     {
-      title: "响应式电商界面",
-      desc: "现代化的电商网站设计，包含购物车、支付流程、用户管理等完整功能。",
-      techStack: "React, Stripe API, Tailwind CSS",
-      githubLink: "https://github.com/yourusername/ecommerce-ui",
-      liveLink: "https://ecommerce-demo.vercel.app"
+      title: "Studyroom Matcher",
+      desc: "Designed and built a mobile app prototype for virtual study room matching integrating customizable filters (subject, environment, session time) and real-time matching features.",
+      techStack: "prototype, Figma, React Native,HCI-driven Design, User Research",
+      githubLink: "https://github.com/JOBEBOLDER/Studyroom-Matcher",
+      liveLink: "https://studyroom-matcher.vercel.app"
     },
     {
-      title: "数据可视化仪表板",
-      desc: "企业级数据分析仪表板，支持多种图表类型和实时数据更新。",
-      techStack: "D3.js, React, Node.js, PostgreSQL",
-      githubLink: "https://github.com/yourusername/data-dashboard",
+      title: "employee management system",
+      desc: "Enterprise-level data analysis dashboard supporting various chart types and real-time data updates.",
+      techStack: "python, Django, React, Chart.js, HTML, Dockerfile",
+      githubLink: "https://github.com/JOBEBOLDER/employee_management_project",
       liveLink: ""
     },
     {
-      title: "移动端 UI 组件库",
-      desc: "一套完整的移动端React组件库，包含30+常用组件和完善的文档。",
-      techStack: "React Native, Storybook, TypeScript",
-      githubLink: "https://github.com/yourusername/mobile-ui-kit",
-      liveLink: "https://ui-kit-storybook.vercel.app"
+      title: "Building Scalable Distributed Systems",
+      desc: "Implementations of distributed systems concepts including socket programming, key-value stores, and replication with consistency protocols。",
+      techStack: "Java, Shell",
+      githubLink: "https://github.com/JOBEBOLDER/finalize_6650_distributed_system",
     },
     {
       title: "AI 聊天机器人",
-      desc: "集成GPT API的智能客服机器人，支持多轮对话和上下文理解。",
-      techStack: "Python, FastAPI, OpenAI API, Vue.js",
-      githubLink: "https://github.com/yourusername/ai-chatbot",
+      desc: "My undergraduate architecture design exploration project was a spatial exploration aimed at creating a place that enhances the food experience.",
+      techStack:"prototype, Figma, React Native,HCI-driven Design, User Research, Rhino, CAD, Photoshop, Sketchup",
+      githubLink: "https://github.com/JOBEBOLDER/SUPERLAND",
       liveLink: ""
     },
     {
-      title: "音乐可视化器",
-      desc: "实时音频可视化工具，将音乐转换为动态的视觉效果。",
-      techStack: "Web Audio API, Canvas, Three.js",
-      githubLink: "https://github.com/yourusername/music-visualizer",
-      liveLink: "https://music-viz-demo.vercel.app"
+      title: "Personal Task Manager App",
+      desc: "A simple React Native mobile application built with Expo and TypeScript that functions as a personal task manager. This app allows users to create, view, edit, and delete tasks, as well as mark tasks as completed or pending.",
+      techStack: "React Native, Expo, TypeScript",
+      githubLink: "https://github.com/JOBEBOLDER/Task_manager_app",
+      liveLink: "https://personal-task-manager.vercel.app"
     },
     {
-      title: "区块链投票系统",
-      desc: "基于以太坊的透明投票系统，确保投票过程的安全性和不可篡改性。",
-      techStack: "Solidity, Web3.js, React, Metamask",
-      githubLink: "https://github.com/yourusername/blockchain-voting",
+      title: "Cathy_Personal_Website",
+      desc: "cathy personal website display jieyao's work。",
+      techStack: "TypeScript, javascript,React, Next.js, Tailwind CSS",
+      githubLink: "https://github.com/JOBEBOLDER/Cathy_Personal_Website",
       liveLink: ""
     }
   ];

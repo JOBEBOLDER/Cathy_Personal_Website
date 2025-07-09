@@ -20,8 +20,8 @@ const Contact = () => {
             / get in touch
           </h2>
           <p className="text-xl text-light-muted max-w-2xl mx-auto leading-relaxed">
-            我很乐意听到你的想法！无论是项目合作、工作机会，还是仅仅想说声你好，
-            都欢迎随时联系我。
+            I'd love to hear from you! Whether it's about project collaboration, job opportunities, 
+            or just wanting to say hello, feel free to reach out anytime.
           </p>
         </motion.div>
 

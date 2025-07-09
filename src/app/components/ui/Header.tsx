@@ -24,9 +24,9 @@ const Header = () => {
   ];
 
   const socialLinks = [
-    { icon: Github, href: 'https://github.com/yourusername', label: 'GitHub' },
-    { icon: Linkedin, href: 'https://linkedin.com/in/yourusername', label: 'LinkedIn' },
-    { icon: Mail, href: 'mailto:your@email.com', label: 'Email' },
+    { icon: Github, href: 'https://github.com/JOBEBOLDER', label: 'GitHub' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/in/jieyao-chen/', label: 'LinkedIn' },
+    { icon: Mail, href: 'chen.jieyao@northeastern.edu', label: 'Email' },
   ];
 
   return (

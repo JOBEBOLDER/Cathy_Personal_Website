@@ -6,8 +6,8 @@ import Header from './components/ui/Header'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: '数字艺术家 - 设计与代码的完美融合',
-  description: '一个融合设计创意与编程技术的个人作品集',
+  title: 'Digital Artist – The Perfect Fusion of Design and Code',
+  description: 'A personal portfolio blending creative design with programming expertise',
 }
 
 export default function RootLayout({

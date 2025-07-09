@@ -74,11 +74,11 @@ const About = () => {
             {/* 第一段 */}
             <motion.div variants={itemVariants}>
               <p className="text-lg text-light-muted leading-relaxed">
-                我目前是一名 <strong className="text-primary-electric">软件开发工程师</strong>，
-                在 <a href="#" className="text-primary-creative hover:underline">某知名科技公司</a> 工作，
-                专注于前端开发和用户体验设计。同时，我正在攻读
-                <strong className="text-primary-electric"> 计算机科学硕士学位</strong>，
-                深入研究人机交互和界面设计。
+                I am currently a <strong className="text-primary-electric">Software Development Engineer</strong> at
+                <a href="#" className="text-primary-creative hover:underline"> a leading tech company</a>, 
+                specializing in frontend development and user experience design. At the same time, I am pursuing a
+                <strong className="text-primary-electric"> Master's degree in Computer Science</strong>, 
+                with a focus on human-computer interaction and interface design.
               </p>
             </motion.div>
 
@@ -105,9 +105,9 @@ const About = () => {
             {/* 第二段 */}
             <motion.div variants={itemVariants}>
               <p className="text-lg text-light-muted leading-relaxed">
-                在工作之外，我热衷于关注设计趋势和新技术发展。我也喜欢玩游戏、
-                制作创意视频，并且经常参与开源项目的贡献。我相信好的设计不仅仅是
-                美观，更应该解决实际问题，创造价值。
+                Outside of work, I'm passionate about following design trends and emerging technologies. 
+                I also enjoy playing games, creating creative videos, and frequently contributing to open-source projects. 
+                I believe good design is not just about aesthetics, but should solve real problems and create value.
               </p>
             </motion.div>
 

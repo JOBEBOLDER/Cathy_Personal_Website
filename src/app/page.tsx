@@ -15,14 +15,14 @@ export default function Home() {
       <section className="min-h-screen bg-dark-surface flex items-center justify-center">
         <div className="text-center">
           <h2 className="text-4xl font-bold text-white mb-4"> About me</h2>
-          <p className="text-light-muted">这里将是关于部分</p>
+          <p className="text-light-muted">Here are some details about me.</p>
         </div>
       </section>
       
       <section className="min-h-screen bg-dark-card flex items-center justify-center">
         <div className="text-center">
           <h2 className="text-4xl font-bold text-white mb-4">my project</h2>
-          <p className="text-light-muted">这里将是项目展示部分</p>
+          <p className="text-light-muted">Here will be the project showcase section.</p>
         </div>
       </section>
     </main>
