@@ -1,0 +1,104 @@
+.hero-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--dark-bg) 0%, var(--dark-surface) 100%);
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .hero-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  
+  .hero-text {
+    z-index: 10;
+  }
+  
+  .hero-title {
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 1rem;
+    line-height: 1.1;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.5rem;
+    color: var(--primary-electric);
+    margin-bottom: 2rem;
+    font-weight: 500;
+  }
+  
+  .hero-description {
+    font-size: 1.1rem;
+    color: var(--light-muted);
+    line-height: 1.6;
+    margin-bottom: 3rem;
+  }
+  
+  .hero-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .hero-button {
+    padding: 1rem 2rem;
+    border: 2px solid var(--primary-electric);
+    background: transparent;
+    color: var(--primary-electric);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-block;
+  }
+  
+  .hero-button:hover {
+    background: var(--primary-electric);
+    color: var(--dark-bg);
+    transform: translateY(-2px);
+  }
+  
+  .hero-button.primary {
+    background: var(--primary-electric);
+    color: var(--dark-bg);
+  }
+  
+  .hero-button.primary:hover {
+    background: var(--primary-creative);
+    border-color: var(--primary-creative);
+  }
+  
+  .hero-3d {
+    position: relative;
+    height: 500px;
+  }
+  
+  @media (max-width: 768px) {
+    .hero-content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      text-align: center;
+    }
+    
+    .hero-title {
+      font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.2rem;
+    }
+    
+    .hero-3d {
+      height: 300px;
+    }
+  }

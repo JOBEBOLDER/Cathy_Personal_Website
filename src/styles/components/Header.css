@@ -1,0 +1,66 @@
+/* Header 组件的补充样式 */
+/* 这些样式补充 Tailwind 类，不替代它们 */
+
+/* 使用 Gazi 风格的字体 */
+nav {
+    font-family: 'NTR', 'Inter', sans-serif;
+    font-weight: bold;
+  }
+  
+  /* 品牌/Logo 样式 */
+  .navbar-brand {
+    color: #ccd6f6 !important;
+    font-family: 'NTR', 'Inter', sans-serif;
+    font-weight: bold;
+  }
+  
+  /* 导航链接样式 */
+  .nav-link {
+    color: #ccd6f6 !important;
+    font-family: 'NTR', 'Inter', sans-serif;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-link:hover {
+    color: #64ffda !important;
+  }
+  
+  /* 社交链接样式 */
+  .social-link {
+    color: #ccd6f6 !important;
+    transition: color 0.3s ease;
+  }
+  
+  .social-link:hover {
+    color: #64ffda !important;
+  }
+  
+  /* 移动端响应式 */
+  @media only screen and (max-width: 600px) {
+    .navbar-brand {
+      display: none;
+    }
+    
+    .desktop-nav {
+      display: none;
+    }
+    
+    .desktop-social {
+      display: none;
+    }
+  }
+  
+  /* 如果你想要 Gazi 风格的配色 */
+  :root {
+    --navy: #0a192f;
+    --lightest-slate: #ccd6f6;
+    --green-bright: #64ffda;
+  }
+  
+  /* 滚动时的背景效果 */
+  .navbar-scrolled {
+    background-color: rgba(10, 25, 47, 0.95) !important;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+  }

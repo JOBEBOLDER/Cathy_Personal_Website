@@ -1,0 +1,116 @@
+.about-section {
+    padding: 8rem 0;
+    background: var(--dark-surface);
+  }
+  
+  .about-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  
+  .about-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 1rem;
+    position: relative;
+  }
+  
+  .about-title::after {
+    content: '';
+    position: absolute;
+    bottom: -0.5rem;
+    left: 0;
+    width: 100px;
+    height: 4px;
+    background: var(--primary-electric);
+  }
+  
+  .about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-top: 4rem;
+  }
+  
+  .about-text {
+    color: var(--light-muted);
+    line-height: 1.7;
+    font-size: 1.1rem;
+  }
+  
+  .about-text p {
+    margin-bottom: 1.5rem;
+  }
+  
+  .about-skills {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+  }
+  
+  .skill-item {
+    background: var(--dark-card);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    text-align: center;
+    color: var(--light-accent);
+    font-weight: 500;
+    transition: transform 0.3s ease;
+  }
+  
+  .skill-item:hover {
+    transform: translateY(-5px);
+    background: var(--primary-electric);
+    color: var(--dark-bg);
+  }
+  
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  
+  .stat-item {
+    background: var(--dark-card);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    text-align: center;
+    border: 1px solid var(--dark-surface);
+  }
+  
+  .stat-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-electric);
+    display: block;
+  }
+  
+  .stat-label {
+    color: var(--light-muted);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+  }
+  
+  @media (max-width: 768px) {
+    .about-content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    
+    .about-title {
+      font-size: 2rem;
+    }
+    
+    .skills-grid {
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    }
+  }

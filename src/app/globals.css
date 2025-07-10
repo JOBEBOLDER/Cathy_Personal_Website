@@ -2,71 +2,311 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 导入字体 */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+/* CSS Variables */
+:root {
+  /* Primary Colors */
+  --color-primary: #1a2332;
+  --color-secondary: #222938;
+  --color-accent: #2a3441;
+  
+  /* Theme Colors */
+  --color-green: #4ade80;
+  --color-green-light: #86efac;
+  --color-green-dark: #22c55e;
+  --color-cyan: #22d3ee;
+  --color-cyan-light: #67e8f9;
+  --color-blue: #3b82f6;
+  
+  /* Text Colors */
+  --color-text-primary: #f8fafc;
+  --color-text-secondary: #cbd5e1;
+  --color-text-muted: #94a3b8;
+  --color-text-faded: #64748b;
+  
+  /* Border & Divider */
+  --color-border: #374151;
+  --color-border-light: #4b5563;
+  
+  /* Background Gradients */
+  --gradient-primary: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  --gradient-green: linear-gradient(135deg, var(--color-green) 0%, var(--color-green-dark) 100%);
+  --gradient-cyan: linear-gradient(135deg, var(--color-cyan) 0%, var(--color-blue) 100%);
+}
 
-/* 基础样式 */
+/* Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  @apply bg-dark-bg text-light-text font-sans;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background-color: var(--color-primary);
+  color: var(--color-text-primary);
+  line-height: 1.6;
   overflow-x: hidden;
 }
 
-/* 自定义滚动条 */
-::-webkit-scrollbar {
-  width: 8px;
+/* Custom Components */
+@layer components {
+  .bg-primary {
+    background-color: var(--color-primary);
+  }
+  
+  .bg-secondary {
+    background-color: var(--color-secondary);
+  }
+  
+  .bg-accent {
+    background-color: var(--color-accent);
+  }
+  
+  .text-primary {
+    color: var(--color-text-primary);
+  }
+  
+  .text-secondary {
+    color: var(--color-text-secondary);
+  }
+  
+  .text-muted {
+    color: var(--color-text-muted);
+  }
+  
+  .border-primary {
+    border-color: var(--color-border);
+  }
+  
+  /* Section Title Styling */
+  .section-title {
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6;
+    font-family: 'Courier New', monospace;
+  }
+  
+  /* Card Styling */
+  .card {
+    @apply bg-secondary border border-gray-700/50 rounded-lg p-6 backdrop-blur-sm;
+    background: rgba(34, 41, 56, 0.7);
+  }
+  
+  .card-hover {
+    @apply card transition-all duration-300 hover:bg-accent hover:border-green-400/30 hover:shadow-lg hover:shadow-green-400/10;
+  }
+  
+  /* Button Variants */
+  .btn-primary {
+    @apply inline-flex items-center px-6 py-3 border-2 border-green-400 text-green-400 hover:bg-green-400 hover:text-gray-900 transition-all duration-300 rounded-lg font-semibold shadow-lg hover:shadow-green-400/25;
+  }
+  
+  .btn-secondary {
+    @apply inline-flex items-center px-6 py-3 bg-secondary border border-gray-600 text-gray-300 hover:bg-accent hover:border-gray-500 transition-all duration-300 rounded-lg;
+  }
+  
+  .btn-ghost {
+    @apply inline-flex items-center px-4 py-2 text-gray-300 hover:text-green-400 hover:bg-green-400/10 transition-all duration-200 rounded-lg;
+  }
+  
+  /* Link Styling */
+  .link-primary {
+    @apply text-green-400 hover:text-green-300 transition-colors duration-200 underline decoration-green-400/30 hover:decoration-green-400;
+  }
+  
+  .link-secondary {
+    @apply text-cyan-400 hover:text-cyan-300 transition-colors duration-200;
+  }
+  
+  /* Navigation Styling */
+  .nav-link {
+    @apply relative px-3 py-2 text-sm font-medium text-gray-300 hover:text-white transition-colors duration-300;
+  }
+  
+  .nav-link.active {
+    @apply text-green-400;
+  }
+  
+  .nav-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-green-400 transition-all duration-300;
+  }
+  
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    @apply w-full;
+  }
+  
+  /* Badge/Tag Styling */
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold;
+  }
+  
+  .badge-green {
+    @apply badge bg-green-400/10 text-green-400 border border-green-400/20;
+  }
+  
+  .badge-cyan {
+    @apply badge bg-cyan-400/10 text-cyan-400 border border-cyan-400/20;
+  }
+  
+  .badge-blue {
+    @apply badge bg-blue-400/10 text-blue-400 border border-blue-400/20;
+  }
+  
+  /* Input Styling */
+  .input-primary {
+    @apply w-full px-4 py-3 bg-secondary border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-green-400 focus:ring-2 focus:ring-green-400/20 transition-all duration-200;
+  }
+  
+  /* Gradient Text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-green-400 to-cyan-400 bg-clip-text text-transparent;
+  }
+  
+  .gradient-text-alt {
+    @apply bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent;
+  }
+  
+  /* Loading Animation */
+  .animate-pulse-custom {
+    animation: pulse-custom 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  @keyframes pulse-custom {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
+    }
+  }
+  
+  /* Glow Effects */
+  .glow-green {
+    box-shadow: 0 0 20px rgba(74, 222, 128, 0.3);
+  }
+  
+  .glow-cyan {
+    box-shadow: 0 0 20px rgba(34, 211, 238, 0.3);
+  }
+  
+  /* Custom Scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: var(--color-secondary);
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--color-green);
+    border-radius: 4px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: var(--color-green-light);
+  }
+  
+  /* Hero Section Specific */
+  .hero-bg {
+    background: radial-gradient(ellipse at top, rgba(74, 222, 128, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at bottom, rgba(34, 211, 238, 0.1) 0%, transparent 50%),
+                var(--color-primary);
+  }
+  
+  /* Code Block Styling */
+  .code-block {
+    @apply bg-gray-900/50 border border-gray-700 rounded-lg p-4 font-mono text-sm text-gray-300 backdrop-blur-sm;
+  }
+  
+  /* Table Styling */
+  .table-primary {
+    @apply w-full bg-secondary rounded-lg overflow-hidden;
+  }
+  
+  .table-primary th {
+    @apply bg-accent px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider;
+  }
+  
+  .table-primary td {
+    @apply px-6 py-4 whitespace-nowrap text-sm text-gray-300 border-t border-gray-700;
+  }
 }
 
-::-webkit-scrollbar-track {
-  @apply bg-dark-surface;
+/* Custom Utilities */
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  .text-shadow-lg {
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  }
+  
+  .backdrop-blur-xs {
+    backdrop-filter: blur(2px);
+  }
+  
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  
+  .transform-style-3d {
+    transform-style: preserve-3d;
+  }
+  
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
 }
 
-::-webkit-scrollbar-thumb {
-  @apply bg-primary-electric rounded-full;
+/* Animation Keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-::-webkit-scrollbar-thumb:hover {
-  @apply bg-primary-creative;
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
-/* 选择文本样式 */
-::selection {
-  @apply bg-primary-electric/30 text-light-text;
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
-/* 加载动画 */
-@keyframes pulse-glow {
+@keyframes float {
   0%, 100% {
-    box-shadow: 0 0 5px #00D4FF;
+    transform: translateY(0px);
   }
   50% {
-    box-shadow: 0 0 20px #00D4FF, 
-                0 0 30px #00D4FF;
+    transform: translateY(-10px);
   }
 }
 
-/* 工具栏变形动画 */
-@keyframes tool-morph {
-  0% {
-    transform: scale(1) rotate(0deg);
-    filter: hue-rotate(0deg);
-  }
-  50% {
-    transform: scale(1.1) rotate(180deg);
-    filter: hue-rotate(90deg);
-  }
-  100% {
-    transform: scale(1) rotate(360deg);
-    filter: hue-rotate(180deg);
-  }
-}
-
-/* 代码显现动画 */
 @keyframes typewriter {
   from {
     width: 0;
@@ -76,94 +316,75 @@ body {
   }
 }
 
-@keyframes blink-caret {
-  from, to {
-    border-color: transparent;
-  }
-  50% {
-    border-color: #00FF88;
-  }
-}
-
-/* 画布到代码的过渡效果 */
-.canvas-to-code {
-  background: linear-gradient(
-    45deg,
-    #FF6B6B 0%,
-    #FFE66D 25%,
-    #8B5DFF 50%,
-    #4ECDC4 75%,
-    #00D4FF 100%
-  );
-  background-size: 400% 400%;
-  animation: gradient-shift 8s ease infinite;
-}
-
-@keyframes gradient-shift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-/* 3D场景容器 */
-.scene-container {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-}
-
-/* 粒子效果 */
-.particle {
-  position: absolute;
-  background: #00D4FF;
-  border-radius: 50%;
-  pointer-events: none;
-  animation: particle-float 6s linear infinite;
-}
-
-@keyframes particle-float {
-  0% {
-    transform: translateY(100vh) scale(0);
-    opacity: 0;
-  }
-  10% {
+@keyframes blink {
+  0%, 50% {
     opacity: 1;
   }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-100vh) scale(1);
+  51%, 100% {
     opacity: 0;
   }
 }
 
-/* 响应式工具类 */
-@layer utilities {
-  .text-gradient-artistic {
-    @apply bg-gradient-artistic bg-clip-text text-transparent;
-  }
-  
-  .text-gradient-technical {
-    @apply bg-gradient-technical bg-clip-text text-transparent;
-  }
-  
-  .glass-effect {
-    @apply backdrop-blur-sm bg-white/10 border border-white/20;
-  }
-  
-  .glow-effect {
-    box-shadow: 0 0 20px #00D4FF;
-  }
-  
-  .hover-lift {
-    @apply transition-transform duration-300 hover:translate-y-[-5px];
+/* Utility Classes for Animations */
+.animate-fadeInUp {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-fadeInLeft {
+  animation: fadeInLeft 0.6s ease-out forwards;
+}
+
+.animate-fadeInRight {
+  animation: fadeInRight 0.6s ease-out forwards;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-typewriter {
+  animation: typewriter 2s steps(20) 1s forwards;
+}
+
+.animate-blink {
+  animation: blink 1s infinite;
+}
+
+/* Dark mode support (if needed later) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
   }
 }
+
+/* Print styles */
+@media print {
+  * {
+    background: transparent !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --color-green: #00ff00;
+    --color-cyan: #00ffff;
+    --color-text-primary: #ffffff;
+    --color-text-secondary: #ffffff;
+    --color-border: #ffffff;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+} 

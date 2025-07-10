@@ -1,13 +1,14 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import './globals.css'
-import Header from './components/ui/Header'
+import '../styles/globals.css'
+import { ThemeProvider } from './contexts/ThemeContext'
+import Header from '../components/ui/Header'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Digital Artist – The Perfect Fusion of Design and Code',
-  description: 'A personal portfolio blending creative design with programming expertise',
+  title: 'Jieyao Chen - Digital Artist & Developer',
+  description: 'Personal portfolio showcasing creative digital experiences and technical projects',
 }
 
 export default function RootLayout({
@@ -16,12 +17,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="zh-CN">
+    <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <Header />
-        <main className="relative">
+        <ThemeProvider>
+          <Header />
           {children}
-        </main>
+        </ThemeProvider>
       </body>
     </html>
   )

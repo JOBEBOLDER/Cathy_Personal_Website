@@ -1,0 +1,249 @@
+/* 导入字体 - 必须在文件最顶部 */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&display=swap');
+
+/* 导入组件样式 */
+@import '../styles/utils/variables.css';
+@import '../styles/components/Hero.css';
+@import '../styles/components/About.css';
+@import '../styles/components/Projects.css';
+@import '../styles/components/Contact.css';
+@import '../styles/components/Header.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CSS 变量定义 - 保持你的现有配色 */
+:root {
+  /* 你的现有主题色 */
+  --theme-bg: #ffffff;
+  --theme-surface: #f8f9fa;
+  --theme-card: #ffffff;
+  --theme-border: #e2e8f0;
+  --theme-text: #1a1a1a;
+  --theme-muted: #64748b;
+  --theme-dim: #94a3b8;
+  
+  /* 数字艺术家主题色彩 - 与你的配色保持一致 */
+  --primary-electric: #22d3ee;
+  --primary-creative: #4ade80;
+  --primary-code: #22c55e;
+  --dark-bg: #1a2332;
+  --dark-surface: #233344;
+  --dark-card: #2a3441;
+  --light-muted: #9ca3af;
+  --light-accent: #ffffff;
+  --white: #ffffff;
+  
+  /* 字体 */
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Monaco', monospace;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  
+  /* 间距 */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 4rem;
+  
+  /* 边框 */
+  --border-radius: 0.5rem;
+  --border-radius-lg: 1rem;
+  
+  /* 阴影 */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+html.dark {
+  --theme-bg: #1a2332;
+  --theme-surface: #233344;
+  --theme-card: #2a3441;
+  --theme-border: #374151;
+  --theme-text: #ffffff;
+  --theme-muted: #9ca3af;
+  --theme-dim: #6b7280;
+}
+
+/* 基础样式 */
+html {
+  scroll-behavior: smooth;
+  background-color: var(--dark-bg);
+}
+
+body {
+  background-color: var(--dark-bg);
+  color: var(--white);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  transition: all 0.3s ease;
+}
+
+/* 自定义滚动条 */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--dark-surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--primary-creative);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--primary-code);
+}
+
+/* 选择文本样式 */
+::selection {
+  background-color: rgba(74, 222, 128, 0.3);
+  color: var(--white);
+}
+
+/* 工具类样式 */
+@layer components {
+  .text-gradient-artistic {
+    background: linear-gradient(135deg, var(--primary-creative), var(--primary-code));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .text-gradient-technical {
+    background: linear-gradient(135deg, var(--primary-electric), #06b6d4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .glass-effect {
+    background: rgba(35, 51, 68, 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(74, 222, 128, 0.2);
+  }
+
+  .theme-transition {
+    transition: all 0.3s ease;
+  }
+
+  .accent-green {
+    color: var(--primary-creative);
+  }
+
+  .accent-cyan {
+    color: var(--primary-electric);
+  }
+
+  .bg-primary {
+    background-color: var(--dark-bg);
+  }
+
+  .bg-secondary {
+    background-color: var(--dark-surface);
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 3rem;
+    position: relative;
+  }
+
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -0.5rem;
+    left: 0;
+    width: 100px;
+    height: 4px;
+    background: var(--primary-creative);
+  }
+
+  @media (min-width: 768px) {
+    .section-title {
+      font-size: 3rem;
+    }
+  }
+
+  /* 按钮样式 */
+  .btn-primary {
+    padding: 1rem 2rem;
+    border: 2px solid var(--primary-electric);
+    background: transparent;
+    color: var(--primary-electric);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-primary:hover {
+    background: var(--primary-electric);
+    color: var(--dark-bg);
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary {
+    padding: 1rem 2rem;
+    border: 2px solid var(--primary-creative);
+    background: var(--primary-creative);
+    color: var(--dark-bg);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-secondary:hover {
+    background: transparent;
+    color: var(--primary-creative);
+    transform: translateY(-2px);
+  }
+
+  /* 卡片样式 */
+  .card {
+    background: var(--dark-surface);
+    border-radius: var(--border-radius-lg);
+    padding: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid var(--dark-card);
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* 动画效果 */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .slide-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .slide-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
