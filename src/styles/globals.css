@@ -1,40 +1,32 @@
 /* 导入字体 - 必须在文件最顶部 */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=NTR:wght@400&display=swap');
 
 /* 导入组件样式 */
-@import '../styles/utils/variables.css';
-@import '../styles/components/Hero.css';
-@import '../styles/components/About.css';
-@import '../styles/components/Projects.css';
-@import '../styles/components/Contact.css';
-@import '../styles/components/Header.css';
+@import './utils/variables.css';
+@import './utils/animations.css';
+@import './components/Hero.css';
+@import './components/About.css';
+@import './components/Projects.css';
+@import './components/Contact.css';
+@import './components/Header.css';
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* CSS 变量定义 - 保持你的现有配色 */
+/* 主题色彩由 variables.css 定义，这里添加补充样式 */
 :root {
-  /* 你的现有主题色 */
-  --theme-bg: #ffffff;
-  --theme-surface: #f8f9fa;
-  --theme-card: #ffffff;
-  --theme-border: #e2e8f0;
-  --theme-text: #1a1a1a;
-  --theme-muted: #64748b;
-  --theme-dim: #94a3b8;
-  
-  /* 数字艺术家主题色彩 - 与你的配色保持一致 */
-  --primary-electric: #22d3ee;
-  --primary-creative: #4ade80;
-  --primary-code: #22c55e;
-  --dark-bg: #1a2332;
-  --dark-surface: #233344;
-  --dark-card: #2a3441;
-  --light-muted: #9ca3af;
-  --light-accent: #ffffff;
-  --white: #ffffff;
+  /* 额外的主题色 */
+  --theme-bg: var(--dark-bg);
+  --theme-surface: var(--dark-surface);
+  --theme-card: var(--dark-card);
+  --theme-border: rgba(136, 146, 176, 0.2);
+  --theme-text: var(--light-accent);
+  --theme-muted: var(--light-muted);
+  --theme-dim: rgba(136, 146, 176, 0.6);
   
   /* 字体 */
   --font-mono: 'JetBrains Mono', 'SF Mono', 'Monaco', monospace;
@@ -58,13 +50,13 @@
 }
 
 html.dark {
-  --theme-bg: #1a2332;
-  --theme-surface: #233344;
-  --theme-card: #2a3441;
-  --theme-border: #374151;
-  --theme-text: #ffffff;
-  --theme-muted: #9ca3af;
-  --theme-dim: #6b7280;
+  --theme-bg: var(--dark-bg);
+  --theme-surface: var(--dark-surface);
+  --theme-card: var(--dark-card);
+  --theme-border: rgba(136, 146, 176, 0.2);
+  --theme-text: var(--light-accent);
+  --theme-muted: var(--light-muted);
+  --theme-dim: rgba(136, 146, 176, 0.6);
 }
 
 /* 基础样式 */
@@ -75,10 +67,38 @@ html {
 
 body {
   background-color: var(--dark-bg);
-  color: var(--white);
+  color: var(--light-accent);
   font-family: var(--font-sans);
   overflow-x: hidden;
   transition: all 0.3s ease;
+}
+
+/* 参考Gazi的布局结构 */
+.App {
+  font-family: "NTR", var(--font-sans);
+  background-color: var(--dark-bg);
+  display: flex;
+  margin: auto;
+}
+
+#content {
+  padding: 80px 200px;
+  width: 100vw;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+/* 响应式调整 */
+@media only screen and (max-width: 600px) {
+  .App {
+    flex-direction: column;
+    padding: 40px 24px;
+  }
+
+  #content {
+    padding: 10px 10px;
+    width: 100%;
+  }
 }
 
 /* 自定义滚动条 */
@@ -103,6 +123,27 @@ body {
 ::selection {
   background-color: rgba(74, 222, 128, 0.3);
   color: var(--white);
+}
+
+/* 链接样式 */
+a {
+  text-decoration: none !important;
+  color: var(--primary-creative) !important;
+}
+
+/* 淡入动画 */
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(10vh);
+  visibility: hidden;
+  transition: opacity 0.6s ease-out, transform 1s ease-out;
+  will-change: opacity, visibility;
+}
+
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
 }
 
 /* 工具类样式 */
@@ -147,27 +188,50 @@ body {
     background-color: var(--dark-surface);
   }
 
+  .bg-dark-bg {
+    background-color: var(--dark-bg);
+  }
+
+  .bg-dark-surface {
+    background-color: var(--dark-surface);
+  }
+
   .section-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--white);
+    font-family: "NTR", var(--font-sans);
+    color: var(--light-accent);
+    font-size: 46px;
+    font-weight: bold;
     margin-bottom: 3rem;
     position: relative;
   }
 
-  .section-title::after {
-    content: '';
-    position: absolute;
-    bottom: -0.5rem;
-    left: 0;
-    width: 100px;
-    height: 4px;
-    background: var(--primary-creative);
+  .section-header {
+    display: flex;
+    padding-bottom: 42px;
+    width: 100vw;
   }
 
-  @media (min-width: 768px) {
+  .section-header::after {
+    content: "";
+    display: block;
+    width: 300px;
+    margin-top: 39px;
+    height: 1px;
+    margin-left: 20px;
+    background-color: var(--light-muted);
+  }
+
+  @media only screen and (max-width: 600px) {
+    .section-header {
+      width: unset;
+    }
+
+    .section-header::after {
+      display: none;
+    }
+
     .section-title {
-      font-size: 3rem;
+      font-size: 32px;
     }
   }
 

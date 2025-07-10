@@ -3,6 +3,9 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Github, Mail, Linkedin, FileText } from 'lucide-react';
+import Hero from '../components/sections/Hero';
+import '../styles/globals.css';
+import Projects from '../components/sections/Projects';
 
 // Navigation 组件
 const Navigation = () => {
@@ -35,9 +38,10 @@ const Navigation = () => {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className="fixed top-0 left-0 right-0 z-50 bg-primary/90 backdrop-blur-md border-b border-gray-700/30"
+      className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b border-gray-700/30"
+      style={{ backgroundColor: 'rgba(10, 25, 47, 0.95)' }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32">
         <div className="flex items-center justify-between h-16">
           
           {/* Logo/Name */}
@@ -133,206 +137,6 @@ const Navigation = () => {
   );
 };
 
-// Hero 组件
-const HeroSection = () => {
-  const [displayText, setDisplayText] = useState('beautiful designs');
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-  // 简单的文字切换效果
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setDisplayText(prev => 
-        prev === 'beautiful designs' ? 'powerful code' : 'beautiful designs'
-      );
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  // 鼠标移动效果
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({
-        x: e.clientX / window.innerWidth,
-        y: e.clientY / window.innerHeight,
-      });
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
-  // 分形树组件
-  const FractalTree = () => (
-    <motion.div
-      initial={{ opacity: 0, scale: 0 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 1.5, ease: "easeOut" }}
-      className="relative w-64 h-64 mx-auto mb-8"
-    >
-      <svg
-        width="256"
-        height="256"
-        viewBox="0 0 256 256"
-        className="w-full h-full"
-        style={{ filter: 'drop-shadow(0 0 20px rgba(74, 222, 128, 0.3))' }}
-      >
-        {/* 主干 */}
-        <motion.line
-          x1="128" y1="240" x2="128" y2="140"
-          stroke="#4ade80"
-          strokeWidth="3"
-          initial={{ pathLength: 0 }}
-          animate={{ pathLength: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        />
-        
-        {/* 分支层1 */}
-        <motion.g
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6 }}
-        >
-          <line x1="128" y1="140" x2="100" y2="100" stroke="#4ade80" strokeWidth="2" />
-          <line x1="128" y1="140" x2="156" y2="100" stroke="#4ade80" strokeWidth="2" />
-        </motion.g>
-        
-        {/* 分支层2 */}
-        <motion.g
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8 }}
-        >
-          <line x1="100" y1="100" x2="80" y2="70" stroke="#22c55e" strokeWidth="1.5" />
-          <line x1="100" y1="100" x2="120" y2="70" stroke="#22c55e" strokeWidth="1.5" />
-          <line x1="156" y1="100" x2="136" y2="70" stroke="#22c55e" strokeWidth="1.5" />
-          <line x1="156" y1="100" x2="176" y2="70" stroke="#22c55e" strokeWidth="1.5" />
-        </motion.g>
-        
-        {/* 分支层3 */}
-        <motion.g
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.0 }}
-        >
-          <circle cx="80" cy="70" r="3" fill="#4ade80" />
-          <circle cx="120" cy="70" r="3" fill="#4ade80" />
-          <circle cx="136" cy="70" r="3" fill="#4ade80" />
-          <circle cx="176" cy="70" r="3" fill="#4ade80" />
-          
-          {/* 更多小分支 */}
-          <circle cx="70" cy="50" r="2" fill="#22c55e" />
-          <circle cx="90" cy="50" r="2" fill="#22c55e" />
-          <circle cx="130" cy="50" r="2" fill="#22c55e" />
-          <circle cx="150" cy="50" r="2" fill="#22c55e" />
-          <circle cx="166" cy="50" r="2" fill="#22c55e" />
-          <circle cx="186" cy="50" r="2" fill="#22c55e" />
-        </motion.g>
-      </svg>
-    </motion.div>
-  );
-
-  return (
-    <section id="intro" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-primary">
-      {/* 背景装饰 */}
-      <div className="absolute inset-0 overflow-hidden">
-        <motion.div
-          className="absolute top-20 left-10 w-72 h-72 bg-green-400/5 rounded-full blur-3xl"
-          animate={{
-            x: mousePosition.x * 50,
-            y: mousePosition.y * 50,
-          }}
-          transition={{ type: "spring", stiffness: 50, damping: 20 }}
-        />
-        <motion.div
-          className="absolute bottom-20 right-10 w-96 h-96 bg-cyan-400/5 rounded-full blur-3xl"
-          animate={{
-            x: -mousePosition.x * 50,
-            y: -mousePosition.y * 50,
-          }}
-          transition={{ type: "spring", stiffness: 50, damping: 20 }}
-        />
-      </div>
-
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-        
-        {/* 分形树装饰 */}
-        <FractalTree />
-
-        {/* 主标题 */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.8 }}
-          className="mb-6"
-        >
-          <h1 className="text-5xl md:text-7xl font-bold leading-tight">
-            <span className="text-white">hi, </span>
-            <span className="text-green-400">jieyao</span>
-            <span className="text-white"> here.|</span>
-          </h1>
-        </motion.div>
-
-        {/* 副标题 */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.6 }}
-          className="mb-8"
-        >
-          <p className="text-xl md:text-2xl text-gray-300">
-            I create{' '}
-            <motion.span
-              key={displayText}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.5 }}
-              className="text-green-400"
-            >
-              {displayText}
-            </motion.span>
-            {' '}sometimes.
-          </p>
-        </motion.div>
-
-        {/* 描述 */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.0, duration: 0.6 }}
-          className="mb-10"
-        >
-          <p className="text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed">
-            I&apos;m a software engineer from San Francisco, CA. I&apos;m fascinated by large-scale, 
-            high-impact products and contributed to major feature launches in industry-leading 
-            services as well as apps that have 100M+ installs.
-          </p>
-        </motion.div>
-
-        {/* CTA 按钮 */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.3, duration: 0.6 }}
-        >
-          <motion.a
-            href="mailto:jieyao.chen@example.com"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center px-8 py-4 border-2 border-green-400 text-green-400 
-                     hover:bg-green-400 hover:text-gray-900 transition-all duration-300 rounded-lg
-                     font-semibold text-lg shadow-lg hover:shadow-green-400/25"
-          >
-            <span className="mr-2">📧</span>
-            Say hi!
-          </motion.a>
-        </motion.div>
-      </div>
-    </section>
-  );
-};
-
 // Experience组件
 const Experience = () => {
   const [activeCompany, setActiveCompany] = useState(0);
@@ -343,6 +147,7 @@ const Experience = () => {
       position: 'Software Development Engineer',
       period: 'May 2025 - PRESENT',
       location: 'Chicago, IL',
+      website: 'https://www.greentree.group/',
       responsibilities: [
         'Managed server infrastructure and API integrations connecting distributed software systems for scalability',
         'Implemented Docker containers and Kubernetes orchestration improving deployment efficiency by 30%',
@@ -353,65 +158,40 @@ const Experience = () => {
       technologies: [ 'React', 'Docker', 'Kubernetes', 'RESTful APIs', 'Microservices']
     },
     {
-      company: 'WATTPAD',
-      position: 'Software Engineer Intern',
-      period: 'MAY 2022 - AUG 2022',
-      location: 'Toronto, ON',
-      website: 'https://wattpad.com',
+      company: 'National Association of Asian American Professionals',
+      position: 'Web developer',
+      period: 'jan 2025 present',
+      location: 'Boston, MA',
+      website: 'https://www.naaapboston.org/',
       responsibilities: [
-        'Built recommendation engine features that increased user engagement by 25%',
-        'Developed RESTful APIs using Node.js and Express for content management system',
-        'Implemented real-time notification system using WebSocket connections',
-        'Participated in code reviews and agile development practices'
+        'Architected leadership development platform using React/Node.js and Strapi CMS serving 2,500+ professionals',
+        'Empowered community building through anti-discrimination resource sharing and engagement features',
+        'Authored comprehensive technical documentation for developers and content managers improving adoption by 40%',
+        'Built multilingual responsive UI supporting cross-device accessibility increasing member engagement by 35%',
+        'Implemented performance optimization techniques serving 15+ community chapters with sub-second load times'
       ],
-      technologies: ['Node.js', 'React', 'MongoDB', 'Redis', 'JavaScript']
+      technologies: ['Node.js', 'React', 'Strapi', 'MongoDB', 'Redis', 'JavaScript']
     },
+
     {
-      company: 'UNIVERSITY OF TORONTO',
-      position: 'Research Assistant',
-      period: 'SEP 2021 - APR 2022',
-      location: 'Toronto, ON',
-      website: 'https://utoronto.ca',
+      company: 'Semir Digital Center',
+      position: 'Software Engineer PM Intern',
+      period: 'Oct 2021 - Feb 2022',
+      location: 'Shanghai, China',
+      website: 'https://semirshop.com/?srsltid=AfmBOoot-6HZONMFNLpRMcHvtErWilGAugJCA25WvX1usD0QQ9O-z_E5',
       responsibilities: [
-        'Conducted research on machine learning algorithms for natural language processing',
-        'Developed Python scripts for data preprocessing and model evaluation',
-        'Co-authored research paper on sentiment analysis in social media data',
-        'Presented findings at departmental seminars and conferences'
+        'Developed a React.js dashboard to track marketing performance, using React Hooks for dynamic state management and Axios for API calls to a Java-based backend via RESTful APIs. Provided real-time visualization of key metrics, which reduced manual data analysis efforts for the marketing team',
+        'Integrated AWS API Gateway with a Java Spring Boot backend to build a reliable API for handling large file uploads. Implemented multi-part uploads with Amazon S3, ensuring that files over 5GB could be uploaded without errors or timeouts, improving efficiency for the business team.',
+        'Developed an internal error reporting system using React.js and Java Spring Boot in an Agile (JIRA/Trello) environment. Implemented a user-facing form to capture detailed error reports, and serialized them into JSON using Jackson stored them in PostgreSQL for efficient analysis, handling over 2,000 bug reports.'
       ],
-      technologies: ['Python', 'TensorFlow', 'NumPy', 'Pandas', 'Jupyter']
+        technologies: ['React', 'TypeScript', 'Tailwind CSS', 'REST APIs', 'Git', 'Java Spring Boot', 'AWS API Gateway', 'Amazon S3', 'PostgreSQL', 'Axios']
     },
-    {
-      company: 'CENTIVIZER',
-      position: 'Frontend Developer Intern',
-      period: 'JUN 2021 - AUG 2021',
-      location: 'Remote',
-      website: 'https://centivizer.com',
-      responsibilities: [
-        'Developed responsive web interfaces using React and modern CSS frameworks',
-        'Integrated third-party APIs for payment processing and user authentication',
-        'Improved website performance by 30% through code optimization and lazy loading',
-        'Collaborated with UX designers to implement pixel-perfect designs'
-      ],
-      technologies: ['React', 'TypeScript', 'Tailwind CSS', 'REST APIs', 'Git']
-    },
-    {
-      company: 'ORANGE GATE',
-      position: 'Software Developer Intern',
-      period: 'MAY 2019 - AUG 2019',
-      location: 'Toronto, ON',
-      website: 'https://orangegate.com',
-      responsibilities: [
-        'Developed a Node.js smart home system through Facebook\'s Messenger integrated with Bocco sensors and other smart devices (Nest camera, TPLink smart plugs) to derive conclusions about the current state of the home',
-        'Identified continuous improvements in data quality, design reports and coding activities, presenting results and findings to internal business stakeholders.',
-        'Relevant technologies/tools used: DialogFlow, Vision, AutoML, Messenger Bot API, MongoDB.'
-      ],
-      technologies: ['DialogFlow', 'Vision', 'AutoML', 'Messenger Bot API', 'MongoDB']
-    }
+
   ];
 
   return (
-    <section id="experience" className="min-h-screen py-20 bg-primary">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="experience" className="min-h-screen py-20">
+      <div className="mx-auto">
         
         {/* 标题 */}
         <motion.div
@@ -421,10 +201,12 @@ const Experience = () => {
           viewport={{ once: true }}
           className="mb-16"
         >
-          <h2 className="section-title">
-            <span className="text-green-400">/ </span>
-            experience
-          </h2>
+          <div className="section-header">
+            <h2 className="section-title">
+              <span className="text-green-400">/ </span>
+              experience
+            </h2>
+          </div>
         </motion.div>
 
         {/* 主要内容 */}
@@ -531,14 +313,14 @@ const Experience = () => {
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-primary">
+    <div className="App min-h-screen">
       <Navigation />
-      <main>
-        <HeroSection />
+      <div id="content">
+        <Hero />
         
         {/* About section */}
-        <section id="about" className="min-h-screen py-20 bg-primary">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="about" className="min-h-screen py-20">
+          <div className="mx-auto">
             
             {/* 标题 */}
             <motion.div
@@ -548,10 +330,12 @@ export default function Home() {
               viewport={{ once: true }}
               className="mb-16"
             >
-              <h2 className="section-title">
-                <span className="text-green-400">/ </span>
-                about me
-              </h2>
+              <div className="section-header">
+                <h2 className="section-title">
+                  <span className="text-green-400">/ </span>
+                  about me
+                </h2>
+              </div>
             </motion.div>
 
             {/* 主要内容 */}
@@ -662,7 +446,7 @@ export default function Home() {
         </section>
 
         <Experience />
-      </main>
+      </div>
     </div>
   );
 }

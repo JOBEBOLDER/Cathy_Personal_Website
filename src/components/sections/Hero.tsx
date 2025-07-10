@@ -2,136 +2,138 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import DigitalArtistScene from '../3d/DigitalArtistScene';
+import WaveGrid from '../3d/WaveGrid';
 
 const Hero = () => {
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [displayText, setDisplayText] = useState('beautiful designs');
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
+  // 简单的文字切换效果
   useEffect(() => {
-    setIsLoaded(true);
+    const interval = setInterval(() => {
+      setDisplayText(prev => 
+        prev === 'beautiful designs' ? 'powerful code' : 'beautiful designs'
+      );
+    }, 3000);
+
+    return () => clearInterval(interval);
   }, []);
 
-  const fadeInUp = {
-    initial: { opacity: 0, y: 60 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.8, ease: 'easeOut' }
-  };
+  // 鼠标移动效果
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({
+        x: e.clientX / window.innerWidth,
+        y: e.clientY / window.innerHeight,
+      });
+    };
 
-  const fadeInLeft = {
-    initial: { opacity: 0, x: -60 },
-    animate: { opacity: 1, x: 0 },
-    transition: { duration: 0.8, delay: 0.2, ease: 'easeOut' }
-  };
-
-  const fadeInRight = {
-    initial: { opacity: 0, x: 60 },
-    animate: { opacity: 1, x: 0 },
-    transition: { duration: 0.8, delay: 0.4, ease: 'easeOut' }
-  };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
 
   return (
-    <section id="intro" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* 背景渐变 */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900" />
-      
-      {/* 背景装饰点 */}
-      <div className="absolute inset-0">
-        {[...Array(50)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 bg-green-400 rounded-full opacity-20"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              animation: `twinkle 3s infinite`
-            }}
-          />
-        ))}
+    <section id="intro" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-primary">
+      {/* 背景装饰 */}
+      <div className="absolute inset-0 overflow-hidden">
+        <motion.div
+          className="absolute top-20 left-10 w-72 h-72 bg-green-400/5 rounded-full blur-3xl"
+          animate={{
+            x: mousePosition.x * 50,
+            y: mousePosition.y * 50,
+          }}
+          transition={{ type: "spring", stiffness: 50, damping: 20 }}
+        />
+        <motion.div
+          className="absolute bottom-20 right-10 w-96 h-96 bg-cyan-400/5 rounded-full blur-3xl"
+          animate={{
+            x: -mousePosition.x * 50,
+            y: -mousePosition.y * 50,
+          }}
+          transition={{ type: "spring", stiffness: 50, damping: 20 }}
+        />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          
-          {/* 左侧文字内容 */}
-          <motion.div 
-            className="text-center lg:text-left"
-            initial="initial"
-            animate="animate"
-            variants={fadeInLeft}
+      <div className="mx-auto text-center relative z-10">
+        
+        {/* 动态网格装饰 */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
+        >
+          <WaveGrid />
+        </motion.div>
+
+        {/* 主标题 */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.8 }}
+          className="mb-6"
+        >
+          <h1 className="text-5xl md:text-7xl font-bold leading-tight">
+            <span className="text-white">hi, </span>
+            <span className="text-green-400">jieyao</span>
+            <span className="text-white"> here.|</span>
+          </h1>
+        </motion.div>
+
+        {/* 副标题 */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8, duration: 0.6 }}
+          className="mb-8"
+        >
+          <p className="text-xl md:text-2xl text-gray-300">
+            I create{' '}
+            <motion.span
+              key={displayText}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.5 }}
+              className="text-green-400"
+            >
+              {displayText}
+            </motion.span>
+            {' '}sometimes.
+          </p>
+        </motion.div>
+
+        {/* 描述 */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.0, duration: 0.6 }}
+          className="mb-10"
+        >
+          <p className="text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed">
+            I&apos;m a software engineer from San Francisco, CA. I&apos;m fascinated by large-scale, 
+            high-impact products and contributed to major feature launches in industry-leading 
+            services as well as apps that have 100M+ installs.
+          </p>
+        </motion.div>
+
+        {/* CTA 按钮 */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.3, duration: 0.6 }}
+        >
+          <motion.a
+            href="mailto:jieyao.chen@example.com"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="inline-flex items-center px-8 py-4 border-2 border-green-400 text-green-400 
+                     hover:bg-green-400 hover:text-gray-900 transition-all duration-300 rounded-lg
+                     font-semibold text-lg shadow-lg hover:shadow-green-400/25"
           >
-            <motion.div 
-              className="mb-6"
-              variants={fadeInUp}
-            >
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
-                <span className="text-white">Hi, I'm </span>
-                <span className="text-gradient-artistic">Jieyao</span>
-              </h1>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mt-2">
-                <span className="text-gradient-technical">Digital Artist</span>
-              </h2>
-            </motion.div>
-
-            <motion.p 
-              className="text-xl text-slate-300 mb-8 max-w-xl"
-              variants={fadeInUp}
-            >
-              I create beautiful digital experiences by blending creative design with cutting-edge technology. 
-              Passionate about turning ideas into interactive realities.
-            </motion.p>
-
-            <motion.div 
-              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
-              variants={fadeInUp}
-            >
-              <motion.a
-                href="#projects"
-                className="btn-primary text-center"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                View My Work
-              </motion.a>
-              <motion.a
-                href="#contact"
-                className="btn-secondary text-center"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Get In Touch
-              </motion.a>
-            </motion.div>
-
-            {/* 技能标签 */}
-            <motion.div 
-              className="mt-8 flex flex-wrap gap-2 justify-center lg:justify-start"
-              variants={fadeInUp}
-            >
-              {['React', 'TypeScript', 'UI/UX Design', 'Three.js', 'Next.js', 'Python'].map((skill) => (
-                <span
-                  key={skill}
-                  className="px-3 py-1 bg-slate-800 text-green-400 rounded-full text-sm font-medium border border-green-400/30"
-                >
-                  {skill}
-                </span>
-              ))}
-            </motion.div>
-          </motion.div>
-
-          {/* 右侧 3D 场景 */}
-          <motion.div
-            className="relative h-[500px] lg:h-[600px]"
-            initial="initial"
-            animate="animate"
-            variants={fadeInRight}
-          >
-            <div className="w-full h-full rounded-2xl overflow-hidden bg-slate-800/50 backdrop-blur-sm border border-slate-700">
-              <DigitalArtistScene />
-            </div>
-          </motion.div>
-
-        </div>
+            <span className="mr-2">📧</span>
+            Say hi!
+          </motion.a>
+        </motion.div>
       </div>
 
       {/* 滚动提示 */}
@@ -139,22 +141,15 @@ const Hero = () => {
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1, duration: 0.6 }}
+        transition={{ delay: 1.5, duration: 0.6 }}
       >
-        <div className="flex flex-col items-center text-slate-400">
+        <div className="flex flex-col items-center text-gray-400">
           <span className="text-sm mb-2">Scroll to explore</span>
-          <div className="w-6 h-10 border-2 border-slate-400 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-slate-400 rounded-full mt-2 animate-bounce" />
+          <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center">
+            <div className="w-1 h-3 bg-gray-400 rounded-full mt-2 animate-bounce" />
           </div>
         </div>
       </motion.div>
-
-      <style jsx>{`
-        @keyframes twinkle {
-          0%, 100% { opacity: 0.2; }
-          50% { opacity: 0.8; }
-        }
-      `}</style>
     </section>
   );
 };
