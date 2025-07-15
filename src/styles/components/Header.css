@@ -1,66 +1,108 @@
-/* Header 组件的补充样式 */
-/* 这些样式补充 Tailwind 类，不替代它们 */
+/* Header 组件样式 - 基于 Gazi 的 NavBar 格式 */
 
-/* 使用 Gazi 风格的字体 */
-nav {
-    font-family: 'NTR', 'Inter', sans-serif;
-    font-weight: bold;
-  }
-  
-  /* 品牌/Logo 样式 */
+/* 导航栏基础样式 */
+.navbar {
+  background-color: var(--navy, #0a192f);
+  color: var(--lightest-slate, #ccd6f6);
+  font-family: 'NTR', 'Inter', sans-serif;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+/* 品牌/Logo 样式 */
+.navbar-brand a {
+  color: var(--lightest-slate, #ccd6f6) !important;
+  font-family: 'NTR', 'Inter', sans-serif;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.navbar-brand a:hover {
+  color: var(--green, #64ffda) !important;
+}
+
+/* 导航链接样式 */
+.nav-link {
+  color: var(--lightest-slate, #ccd6f6) !important;
+  font-family: 'NTR', 'Inter', sans-serif;
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.nav-link:hover {
+  color: var(--green, #64ffda) !important;
+}
+
+/* 社交链接样式 */
+.social-link {
+  color: var(--lightest-slate, #ccd6f6) !important;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.social-link:hover {
+  color: var(--green, #64ffda) !important;
+  transform: translateY(-2px);
+}
+
+/* 滚动时的背景效果 */
+.navbar-scrolled {
+  background-color: rgba(10, 25, 47, 0.95) !important;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+}
+
+/* CSS变量定义 */
+:root {
+  --navy: #0a192f;
+  --dark-navy: #020c1b;
+  --lightest-slate: #ccd6f6;
+  --slate: #8892b0;
+  --light-slate: #a8b2d1;
+  --green: #64ffda;
+  --green-tint: rgba(100, 255, 218, 0.1);
+}
+
+/* 移动端响应式 */
+@media only screen and (max-width: 768px) {
   .navbar-brand {
-    color: #ccd6f6 !important;
-    font-family: 'NTR', 'Inter', sans-serif;
-    font-weight: bold;
+    font-size: 1.1rem;
   }
   
-  /* 导航链接样式 */
-  .nav-link {
-    color: #ccd6f6 !important;
-    font-family: 'NTR', 'Inter', sans-serif;
-    font-weight: bold;
-    transition: color 0.3s ease;
+  /* 移动端隐藏桌面导航 */
+  .desktop-nav {
+    display: none !important;
   }
   
-  .nav-link:hover {
-    color: #64ffda !important;
+  /* 移动端隐藏桌面社交链接 */
+  .desktop-social {
+    display: none !important;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .navbar-brand {
+    display: block; /* 在移动端仍然显示名字 */
+    font-size: 1rem;
+  }
+}
+
+/* 确保在大屏幕上正确显示 */
+@media (min-width: 769px) {
+  .navbar {
+    padding: 0.75rem 0;
   }
   
-  /* 社交链接样式 */
-  .social-link {
-    color: #ccd6f6 !important;
-    transition: color 0.3s ease;
+  /* 确保三列布局：logo - nav - social */
+  .navbar > div > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
   }
-  
-  .social-link:hover {
-    color: #64ffda !important;
-  }
-  
-  /* 移动端响应式 */
-  @media only screen and (max-width: 600px) {
-    .navbar-brand {
-      display: none;
-    }
-    
-    .desktop-nav {
-      display: none;
-    }
-    
-    .desktop-social {
-      display: none;
-    }
-  }
-  
-  /* 如果你想要 Gazi 风格的配色 */
-  :root {
-    --navy: #0a192f;
-    --lightest-slate: #ccd6f6;
-    --green-bright: #64ffda;
-  }
-  
-  /* 滚动时的背景效果 */
-  .navbar-scrolled {
-    background-color: rgba(10, 25, 47, 0.95) !important;
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(100, 255, 218, 0.1);
-  }
+}

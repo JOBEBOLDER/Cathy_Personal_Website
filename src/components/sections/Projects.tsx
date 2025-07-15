@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Github, ExternalLink, Folder } from 'lucide-react';
+import "../../styles/components/Projects.css";
 
 const Projects = () => {
   const [currentProject, setCurrentProject] = useState(0);
@@ -12,32 +13,32 @@ const Projects = () => {
     {
       id: 1,
       title: 'portfolio.js',
-      description: 'Portfolio.js is a small JS library that helps with clear and succinct data presentation that is easy to navigate. Built by Gazi Jarin.',
-      tech: 'NODE.JS (EXPRESS.JS)',
+      description: 'Portfolio.js is a TSX library that helps with clear and succinct data presentation that is easy to navigate. Built by Jieyao Chen.',
+      tech: 'REACT.JS + TYPESCRIPT',
       image: '/api/placeholder/600/400',
-      github: 'https://github.com/username/portfolio.js',
+      github: 'https://github.com/JOBEBOLDER/Cathy_Personal_Website',
       demo: 'https://portfolio.js.demo',
       type: 'Library',
       buttons: ['examples', 'api', 'get started']
     },
     {
       id: 2,
-      title: 'React Dashboard',
-      description: 'A comprehensive admin dashboard built with React, featuring real-time data visualization, user management, and analytics.',
-      tech: 'REACT.JS + TYPESCRIPT',
+      title: 'Kanbas teaching management system',
+      description: 'A comprehensive admin dashboard featuring role-based management, analytics, and more.',
+      tech: 'REACT.JS, Javascript, EXPRESS.JS, NODE.JS, MONGO.DB',
       image: '/api/placeholder/600/400',
-      github: 'https://github.com/username/react-dashboard',
-      demo: 'https://dashboard.demo',
+      github: 'https://github.com/JOBEBOLDER/Kanbas_teaching_management_system?tab=readme-ov-file',
+      demo: 'https://kanbas-react-web-app-jieyao.netlify.app',
       type: 'Web App',
       buttons: ['demo', 'docs', 'source']
     },
     {
       id: 3,
-      title: 'AI Chat Interface',
-      description: 'Modern chat interface powered by AI, featuring real-time conversations, message history, and smart responses.',
-      tech: 'NEXT.JS + OPENAI API',
+      title: 'Cloud Native FoodTech SkyBite System',
+      description: 'A cloud native foodtech system that allows users to order food and track their orders.',
+      tech: 'Javascript,CSS, Java, Vim',
       image: '/api/placeholder/600/400',
-      github: 'https://github.com/username/ai-chat',
+      github: 'https://github.com/JOBEBOLDER/Cloud-Native-FoodTech-SkyBite-System',
       demo: 'https://ai-chat.demo',
       type: 'AI Tool',
       buttons: ['try it', 'github', 'docs']
@@ -47,25 +48,44 @@ const Projects = () => {
   // 其他项目
   const otherProjects = [
     {
-      title: 'TDSB Homework Management Interface',
-      description: 'A homework management system for students and teachers.',
-      tech: ['React', 'Node.js', 'MongoDB'],
-      github: 'https://github.com/username/tdsb-homework',
+      title: 'Employee Management System',
+      description: 'Employee Management System with APIs & Visualization',
+      tech: ['Python, HTML, Docker'],
+      github: 'https://github.com/JOBEBOLDER/employee_management_project',
       demo: 'https://tdsb-homework.demo'
     },
     {
-      title: 'Adam A.I.',
-      description: 'A self-learning A.I. that learns to play games autonomously.',
-      tech: ['Python', 'TensorFlow', 'OpenAI Gym'],
-      github: 'https://github.com/username/adam-ai',
+      title: 'Personal Task Manager App.',
+      description: 'This app allows users to create, view, edit, and delete tasks, as well as mark tasks as completed or pending.',
+      tech: ['Typescript'],
+      github: 'https://github.com/JOBEBOLDER/Task_manager_app',
       demo: 'https://adam-ai.demo'
     },
     {
-      title: 'Distributed Logging and Monitoring System',
-      description: 'A scalable logging system for microservices architecture.',
-      tech: ['Go', 'Docker', 'Kubernetes'],
-      github: 'https://github.com/username/logging-system'
+      title: '📚 Study Room Matcher',
+      description: 'Study Room Matcher is a prototype mobile app aimed at solving a common problem for students: finding the right virtual study environment.',
+      tech: ['Prototype, Figma, React Native, Expo'],
+      github: 'https://github.com/JOBEBOLDER/Studyroom_matcher'
+    },
+    {
+      title: 'High-Concurrency Commerce Platform',
+      description: 'developed high-performance and scalable backend solutions using Java, Redis, and Spring Boot to optimize real-time eCommerce transactions.',
+      tech: ['Java, Lua'],
+      github: 'https://github.com/JOBEBOLDER/High-Concurrency-Commerce-Platform'
+    },
+    {
+      title: 'Building Scalable Distributed Systems',
+      description: 'Implementations of distributed systems concepts including socket programming, key-value stores, and replication with consistency protocols.',
+      tech: ['Java, shell'],
+      github: 'https://github.com/JOBEBOLDER/Building-Scalable-Distributed-Systems'
+    },
+    {
+      title: 'MasterMind Game chessboard',
+      description: 'Developed a "MasterMind Code Game" with Python, enhancing gameplay through object-oriented design and the Turtle graphics library.',
+      tech: ['python,shell,htl'],
+      github: 'https://github.com/JOBEBOLDER/MasterMind-Code-Game-Development-'
     }
+
   ];
 
   // 自动轮播
@@ -97,10 +117,12 @@ const Projects = () => {
           viewport={{ once: true }}
           className="mb-16"
         >
-          <h2 className="section-title">
-            <span className="text-green-400">/ </span>
-            pet projects
-          </h2>
+          <div className="section-header">
+            <h2 className="section-title">
+              <span className="text-green-400">/ </span>
+              pet projects
+            </h2>
+          </div>
         </motion.div>
 
         {/* 主项目轮播 */}
@@ -236,63 +258,65 @@ const Projects = () => {
         </div>
 
         {/* 其他项目网格 */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {otherProjects.map((project, index) => (
-            <motion.div
-              key={project.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -5 }}
-              className="bg-secondary border border-gray-700/50 rounded-lg p-6 hover:border-green-400/50 transition-all duration-300"
-            >
-              {/* 项目图标 */}
-              <div className="flex items-center justify-between mb-4">
-                <Folder className="text-green-400" size={24} />
-                <div className="flex space-x-2">
-                  {project.github && (
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-gray-400 hover:text-green-400 transition-colors"
-                    >
-                      <Github size={20} />
-                    </a>
-                  )}
-                  {project.demo && (
-                    <a
-                      href={project.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-gray-400 hover:text-green-400 transition-colors"
-                    >
-                      <ExternalLink size={20} />
-                    </a>
-                  )}
+        <div className="projects-container">
+          <ul className="projects-grid grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {otherProjects.map((project, index) => (
+              <motion.li
+                key={project.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -5 }}
+                className="project-card bg-secondary border border-gray-700/50 rounded-lg p-6 hover:border-green-400/50 transition-all duration-300"
+              >
+                {/* 项目头部 */}
+                <div className="card-header flex items-center justify-between mb-4">
+                  <div className="folder-icon">
+                    <Folder className="text-green-400" size={35} />
+                  </div>
+                  <div className="flex space-x-2">
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-gray-400 hover:text-green-400 transition-colors"
+                      >
+                        <Github size={20} />
+                      </a>
+                    )}
+                    {project.demo && (
+                      <a
+                        href={project.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-gray-400 hover:text-green-400 transition-colors"
+                      >
+                        <ExternalLink size={20} />
+                      </a>
+                    )}
+                  </div>
                 </div>
-              </div>
 
-              {/* 项目标题 */}
-              <h3 className="text-xl font-bold text-white mb-3">{project.title}</h3>
+                {/* 项目标题 */}
+                <div className="card-title text-xl font-bold text-white mb-3">{project.title}</div>
 
-              {/* 项目描述 */}
-              <p className="text-gray-400 mb-4 line-clamp-3">{project.description}</p>
+                {/* 项目描述 */}
+                <div className="card-desc text-gray-400 mb-4 line-clamp-3">{project.description}</div>
 
-              {/* 技术栈 */}
-              <div className="flex flex-wrap gap-2">
-                {project.tech.map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-3 py-1 bg-green-400/10 text-green-400 text-xs rounded-lg font-mono"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-          ))}
+                {/* 技术栈 */}
+                <div className="card-tech">
+                  {project.tech.map((tech, i) => (
+                    <span key={tech}>
+                      {tech}
+                      {i < project.tech.length - 1 && ', '}
+                    </span>
+                  ))}
+                </div>
+              </motion.li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>

@@ -54,7 +54,7 @@ const Hero = () => {
         />
       </div>
 
-      <div className="mx-auto text-center relative z-10">
+      <div className="max-w-6xl mx-auto text-center relative z-10">
         
         {/* 动态网格装饰 */}
         <motion.div
@@ -110,7 +110,7 @@ const Hero = () => {
           className="mb-10"
         >
           <p className="text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed">
-            I&apos;m a software engineer from San Francisco, CA. I&apos;m fascinated by large-scale, 
+            I&apos;m a software engineer from Boston, MA. I&apos;m fascinated by large-scale, 
             high-impact products and contributed to major feature launches in industry-leading 
             services as well as apps that have 100M+ installs.
           </p>
@@ -123,10 +123,10 @@ const Hero = () => {
           transition={{ delay: 1.3, duration: 0.6 }}
         >
           <motion.a
-            href="mailto:jieyao.chen@example.com"
+            href="mailto:chen.jieyao@northeastern.edu"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center px-8 py-4 border-2 border-green-400 text-green-400 
+            className="inline-flex items-center px-16 py-12 border-2 border-green-400 text-green-400 
                      hover:bg-green-400 hover:text-gray-900 transition-all duration-300 rounded-lg
                      font-semibold text-lg shadow-lg hover:shadow-green-400/25"
           >
