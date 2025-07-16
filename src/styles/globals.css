@@ -6,11 +6,12 @@
 /* 导入组件样式 */
 @import './utils/variables.css';
 @import './utils/animations.css';
-@import './components/Hero.css';
+@import './components/Intro.css';
 @import './components/About.css';
+@import './components/Experience.css';
 @import './components/Projects.css';
 @import './components/Contact.css';
-@import './components/Header.css';
+@import './components/Navigation.css';
 
 @tailwind base;
 @tailwind components;
@@ -73,7 +74,6 @@ body {
   transition: all 0.3s ease;
 }
 
-/* 参考Gazi的布局结构 */
 .App {
   font-family: "NTR", var(--font-sans);
   background-color: var(--dark-bg);
@@ -96,8 +96,8 @@ body {
   }
 
   #content {
-    padding: 10px 10px;
-    width: 100%;
+    padding: 80px 500px;  /* 上下80px，左右200px */
+    width: 100vw;
   }
 }
 

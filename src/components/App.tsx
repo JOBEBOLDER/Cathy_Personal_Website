@@ -2,7 +2,7 @@
 
 import React from "react";
 import Navigation from "./ui/Navigation";
-import Hero from "./sections/Hero";
+import Intro from "./sections/Intro";
 import About from "./sections/About";
 import Experience from "./sections/Experience";
 import Projects from "./sections/Projects";
@@ -14,7 +14,7 @@ function App() {
     <div className="App">
       <Navigation />
       <div id="content">
-        <Hero />
+        <Intro />
         <About />
         <Experience />
         <Projects />

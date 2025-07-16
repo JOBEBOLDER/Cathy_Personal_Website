@@ -4,294 +4,285 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Github, ExternalLink, Folder } from 'lucide-react';
 import "../../styles/components/Projects.css";
+import FadeInSection from "./FadeInSection";
+
+interface SpotlightProject {
+  title: string;
+  desc: string;
+  techStack: string;
+  link: string;
+  open: string;
+  image: string;
+}
+
+interface Project {
+  desc: string;
+  techStack: string;
+  link: string;
+  open: string;
+}
+
+interface SpotlightProjects {
+  [key: string]: SpotlightProject;
+}
+
+interface Projects {
+  [key: string]: Project;
+}
 
 const Projects = () => {
   const [currentProject, setCurrentProject] = useState(0);
 
-  // 主要项目（轮播展示）
-  const featuredProjects = [
-    {
-      id: 1,
-      title: 'portfolio.js',
-      description: 'Portfolio.js is a TSX library that helps with clear and succinct data presentation that is easy to navigate. Built by Jieyao Chen.',
-      tech: 'REACT.JS + TYPESCRIPT',
-      image: '/api/placeholder/600/400',
-      github: 'https://github.com/JOBEBOLDER/Cathy_Personal_Website',
-      demo: 'https://portfolio.js.demo',
-      type: 'Library',
-      buttons: ['examples', 'api', 'get started']
+  // 主要项目（轮播展示）- Spotlight projects
+  const spotlightProjects: SpotlightProjects = {
+    "portfolio.js": {
+      title: "portfolio.js",
+      desc: "Portfolio.js is a TSX library that helps with clear and succinct data presentation that is easy to navigate. Built by Jieyao Chen.",
+      techStack: "REACT.JS + TYPESCRIPT",
+      link: "https://github.com/JOBEBOLDER/Cathy_Personal_Website",
+      open: "https://portfolio.js.demo",
+      image: "/assets/portfolio.png"
     },
-    {
-      id: 2,
-      title: 'Kanbas teaching management system',
-      description: 'A comprehensive admin dashboard featuring role-based management, analytics, and more.',
-      tech: 'REACT.JS, Javascript, EXPRESS.JS, NODE.JS, MONGO.DB',
-      image: '/api/placeholder/600/400',
-      github: 'https://github.com/JOBEBOLDER/Kanbas_teaching_management_system?tab=readme-ov-file',
-      demo: 'https://kanbas-react-web-app-jieyao.netlify.app',
-      type: 'Web App',
-      buttons: ['demo', 'docs', 'source']
+    "Kanbas System": {
+      title: "kanbas teaching management system",
+      desc: "A comprehensive admin dashboard featuring role-based management, analytics, and more.",
+      techStack: "REACT.JS, JAVASCRIPT, EXPRESS.JS, NODE.JS, MONGO.DB",
+      link: "https://github.com/JOBEBOLDER/Kanbas_teaching_management_system?tab=readme-ov-file",
+      open: "https://kanbas-react-web-app-jieyao.netlify.app",
+      image: "/assets/kanbas.png"
     },
-    {
-      id: 3,
-      title: 'Cloud Native FoodTech SkyBite System',
-      description: 'A cloud native foodtech system that allows users to order food and track their orders.',
-      tech: 'Javascript,CSS, Java, Vim',
-      image: '/api/placeholder/600/400',
-      github: 'https://github.com/JOBEBOLDER/Cloud-Native-FoodTech-SkyBite-System',
-      demo: 'https://ai-chat.demo',
-      type: 'AI Tool',
-      buttons: ['try it', 'github', 'docs']
+    "SkyBite System": {
+      title: "cloud native foodtech skybite system",
+      desc: "A cloud native foodtech system that allows users to order food and track their orders.",
+      techStack: "JAVASCRIPT, CSS, JAVA, VIM",
+      link: "https://github.com/JOBEBOLDER/Cloud-Native-FoodTech-SkyBite-System",
+      open: "https://ai-chat.demo",
+      image: "/assets/superland.png"
     }
-  ];
+  };
 
   // 其他项目
-  const otherProjects = [
-    {
-      title: 'Employee Management System',
-      description: 'Employee Management System with APIs & Visualization',
-      tech: ['Python, HTML, Docker'],
-      github: 'https://github.com/JOBEBOLDER/employee_management_project',
-      demo: 'https://tdsb-homework.demo'
+  const projects: Projects = {
+    "Employee Management System": {
+      desc: "Employee Management System with APIs & Visualization",
+      techStack: "Python, HTML, Docker",
+      link: "https://github.com/JOBEBOLDER/employee_management_project",
+      open: "https://tdsb-homework.demo"
     },
-    {
-      title: 'Personal Task Manager App.',
-      description: 'This app allows users to create, view, edit, and delete tasks, as well as mark tasks as completed or pending.',
-      tech: ['Typescript'],
-      github: 'https://github.com/JOBEBOLDER/Task_manager_app',
-      demo: 'https://adam-ai.demo'
+    "Personal Task Manager App.": {
+      desc: "This app allows users to create, view, edit, and delete tasks, as well as mark tasks as completed or pending.",
+      techStack: "Typescript",
+      link: "https://github.com/JOBEBOLDER/Task_manager_app",
+      open: "https://adam-ai.demo"
     },
-    {
-      title: '📚 Study Room Matcher',
-      description: 'Study Room Matcher is a prototype mobile app aimed at solving a common problem for students: finding the right virtual study environment.',
-      tech: ['Prototype, Figma, React Native, Expo'],
-      github: 'https://github.com/JOBEBOLDER/Studyroom_matcher'
+    "📚 Study Room Matcher": {
+      desc: "Study Room Matcher is a prototype mobile app aimed at solving a common problem for students: finding the right virtual study environment.",
+      techStack: "Prototype, Figma, React Native, Expo",
+      link: "https://github.com/JOBEBOLDER/Studyroom_matcher",
+      open: ""
     },
-    {
-      title: 'High-Concurrency Commerce Platform',
-      description: 'developed high-performance and scalable backend solutions using Java, Redis, and Spring Boot to optimize real-time eCommerce transactions.',
-      tech: ['Java, Lua'],
-      github: 'https://github.com/JOBEBOLDER/High-Concurrency-Commerce-Platform'
+    "High-Concurrency Commerce Platform": {
+      desc: "developed high-performance and scalable backend solutions using Java, Redis, and Spring Boot to optimize real-time eCommerce transactions.",
+      techStack: "Java, Lua",
+      link: "https://github.com/JOBEBOLDER/High-Concurrency-Commerce-Platform",
+      open: ""
     },
-    {
-      title: 'Building Scalable Distributed Systems',
-      description: 'Implementations of distributed systems concepts including socket programming, key-value stores, and replication with consistency protocols.',
-      tech: ['Java, shell'],
-      github: 'https://github.com/JOBEBOLDER/Building-Scalable-Distributed-Systems'
+    "Building Scalable Distributed Systems": {
+      desc: "Implementations of distributed systems concepts including socket programming, key-value stores, and replication with consistency protocols.",
+      techStack: "Java, shell",
+      link: "https://github.com/JOBEBOLDER/Building-Scalable-Distributed-Systems",
+      open: ""
     },
-    {
-      title: 'MasterMind Game chessboard',
-      description: 'Developed a "MasterMind Code Game" with Python, enhancing gameplay through object-oriented design and the Turtle graphics library.',
-      tech: ['python,shell,htl'],
-      github: 'https://github.com/JOBEBOLDER/MasterMind-Code-Game-Development-'
+    "MasterMind Game chessboard": {
+      desc: "Developed a 'MasterMind Code Game' with Python, enhancing gameplay through object-oriented design and the Turtle graphics library.",
+      techStack: "python, shell, html",
+      link: "https://github.com/JOBEBOLDER/MasterMind-Code-Game-Development-",
+      open: ""
     }
+  };
 
-  ];
+  const spotlightKeys = Object.keys(spotlightProjects);
 
   // 自动轮播
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentProject((prev) => (prev + 1) % featuredProjects.length);
+      setCurrentProject((prev) => (prev + 1) % spotlightKeys.length);
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [featuredProjects.length]);
+  }, [spotlightKeys.length]);
 
   const nextProject = () => {
-    setCurrentProject((prev) => (prev + 1) % featuredProjects.length);
+    setCurrentProject((prev) => (prev + 1) % spotlightKeys.length);
   };
 
   const prevProject = () => {
-    setCurrentProject((prev) => (prev - 1 + featuredProjects.length) % featuredProjects.length);
+    setCurrentProject((prev) => (prev - 1 + spotlightKeys.length) % spotlightKeys.length);
   };
 
-  return (
-    <section id="projects" className="min-h-screen py-20 bg-primary">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* 标题 */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="mb-16"
-        >
-          <div className="section-header">
-            <h2 className="section-title">
-              <span className="text-green-400">/ </span>
-              pet projects
-            </h2>
-          </div>
-        </motion.div>
+  const currentSpotlight = spotlightProjects[spotlightKeys[currentProject]];
 
-        {/* 主项目轮播 */}
-        <div className="mb-20">
-          <div className="relative bg-gradient-to-br from-green-400/10 to-cyan-400/10 rounded-2xl p-8 md:p-12 backdrop-blur-sm border border-green-400/20">
-            
+  return (
+    <div id="projects">
+      <div className="section-header">
+        <span className="section-title">/ pet projects</span>
+      </div>
+
+      {/* Spotlight Carousel */}
+      <div className="carousel slide">
+        <div className="carousel-container">
+          {/* 图片容器 */}
+          <div className="carousel-inner">
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentProject}
-                initial={{ opacity: 0, x: 100 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -100 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
                 transition={{ duration: 0.5 }}
-                className="text-center"
+                className="carousel-item active"
               >
-                {/* 项目类型标签 */}
-                <motion.div
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 }}
-                  className="inline-block px-4 py-2 bg-green-400/20 text-green-400 rounded-full text-sm font-medium mb-6"
-                >
-                  {featuredProjects[currentProject].type}
-                </motion.div>
-
-                {/* 项目标题 */}
-                <motion.h3
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 }}
-                  className="text-4xl md:text-6xl font-bold text-white mb-6"
-                >
-                  {featuredProjects[currentProject].title}
-                </motion.h3>
-
-                {/* 项目描述 */}
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4 }}
-                  className="text-lg text-gray-300 max-w-3xl mx-auto mb-8 leading-relaxed"
-                >
-                  {featuredProjects[currentProject].description}
-                </motion.p>
-
-                {/* 技术栈 */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 }}
-                  className="mb-8"
-                >
-                  <span className="inline-block px-4 py-2 bg-cyan-400/20 text-cyan-400 rounded-lg text-sm font-mono">
-                    {featuredProjects[currentProject].tech}
-                  </span>
-                </motion.div>
-
-                {/* 项目按钮 */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6 }}
-                  className="flex justify-center space-x-4 mb-8"
-                >
-                  {featuredProjects[currentProject].buttons.map((button, index) => (
-                    <motion.button
-                      key={button}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="px-6 py-3 border border-gray-500 text-gray-400 hover:border-green-400 hover:text-green-400 transition-all duration-200 rounded-lg"
-                    >
-                      {button}
-                    </motion.button>
-                  ))}
-                </motion.div>
-
-                {/* 项目链接 */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.7 }}
-                  className="flex justify-center space-x-6"
-                >
-                  <motion.a
-                    href={featuredProjects[currentProject].github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.1 }}
-                    className="text-gray-400 hover:text-green-400 transition-colors"
-                  >
-                    <Github size={24} />
-                  </motion.a>
-                  <motion.a
-                    href={featuredProjects[currentProject].demo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.1 }}
-                    className="text-gray-400 hover:text-green-400 transition-colors"
-                  >
-                    <ExternalLink size={24} />
-                  </motion.a>
-                </motion.div>
+                <img
+                  src={currentSpotlight.image}
+                  alt={currentSpotlight.title}
+                  onError={(e) => {
+                    e.currentTarget.src = `https://via.placeholder.com/1000x500/64ffda/0a192f?text=${encodeURIComponent(currentSpotlight.title)}`;
+                  }}
+                />
               </motion.div>
             </AnimatePresence>
 
-            {/* 导航按钮 */}
+            {/* Navigation arrows */}
             <button
               onClick={prevProject}
-              className="absolute left-4 top-1/2 -translate-y-1/2 p-2 text-gray-400 hover:text-green-400 transition-colors"
+              className="carousel-control-prev"
+              style={{
+                position: 'absolute',
+                left: '20px',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer'
+              }}
             >
               <ChevronLeft size={32} />
             </button>
             <button
               onClick={nextProject}
-              className="absolute right-4 top-1/2 -translate-y-1/2 p-2 text-gray-400 hover:text-green-400 transition-colors"
+              className="carousel-control-next"
+              style={{
+                position: 'absolute',
+                right: '20px',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer'
+              }}
             >
               <ChevronRight size={32} />
             </button>
 
-            {/* 轮播指示器 */}
-            <div className="flex justify-center space-x-2 mt-8">
-              {featuredProjects.map((_, index) => (
+            {/* Indicators */}
+            <div className="carousel-indicators" style={{ display: 'flex', justifyContent: 'center', gap: '10px', position: 'absolute', bottom: '20px', left: '50%', transform: 'translateX(-50%)' }}>
+              {spotlightKeys.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentProject(index)}
-                  className={`w-3 h-3 rounded-full transition-colors ${
-                    index === currentProject ? 'bg-green-400' : 'bg-gray-600'
-                  }`}
+                  style={{
+                    width: '12px',
+                    height: '12px',
+                    borderRadius: '50%',
+                    border: 'none',
+                    cursor: 'pointer',
+                    backgroundColor: index === currentProject ? 'var(--green-bright)' : 'var(--slate)'
+                  }}
                 />
               ))}
             </div>
           </div>
-        </div>
 
-        {/* 其他项目网格 */}
-        <div className="projects-container">
-          <ul className="projects-grid grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {otherProjects.map((project, index) => (
-              <motion.li
-                key={project.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -5 }}
-                className="project-card bg-secondary border border-gray-700/50 rounded-lg p-6 hover:border-green-400/50 transition-all duration-300"
+          {/* 文字内容容器 */}
+          <div className="carousel-caption">
+            <motion.h3
+              key={`title-${currentProject}`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+            >
+              {currentSpotlight.title}
+            </motion.h3>
+            <motion.p
+              key={`desc-${currentProject}`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+            >
+              {currentSpotlight.desc}
+            </motion.p>
+            <motion.p
+              key={`tech-${currentProject}`}
+              className="techStack"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+            >
+              {currentSpotlight.techStack}
+            </motion.p>
+            <motion.div
+              key={`links-${currentProject}`}
+              className="external-links"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+            >
+              <a
+                href={currentSpotlight.link}
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                {/* 项目头部 */}
-                <div className="card-header flex items-center justify-between mb-4">
+                <Github size={24} />
+              </a>
+              {currentSpotlight.open && (
+                <a
+                  href={currentSpotlight.open}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <ExternalLink size={24} />
+                </a>
+              )}
+            </motion.div>
+          </div>
+        </div>
+      </div>
+
+      {/* Projects Grid */}
+      <div className="project-container">
+        <ul className="projects-grid">
+          {Object.keys(projects).map((key, i) => (
+            <FadeInSection key={key} delay={`${i + 1}00ms`}>
+              <li className="projects-card">
+                <div className="card-header">
                   <div className="folder-icon">
-                    <Folder className="text-green-400" size={35} />
+                    <Folder size={35} />
                   </div>
-                  <div className="flex space-x-2">
-                    {project.github && (
+                  <div style={{ display: 'flex', gap: '10px' }}>
+                    <a
+                      href={projects[key].link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="github-icon"
+                    >
+                      <Github size={20} />
+                    </a>
+                    {projects[key].open && (
                       <a
-                        href={project.github}
+                        href={projects[key].open}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-gray-400 hover:text-green-400 transition-colors"
-                      >
-                        <Github size={20} />
-                      </a>
-                    )}
-                    {project.demo && (
-                      <a
-                        href={project.demo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-gray-400 hover:text-green-400 transition-colors"
+                        className="open-icon"
                       >
                         <ExternalLink size={20} />
                       </a>
@@ -299,27 +290,15 @@ const Projects = () => {
                   </div>
                 </div>
 
-                {/* 项目标题 */}
-                <div className="card-title text-xl font-bold text-white mb-3">{project.title}</div>
-
-                {/* 项目描述 */}
-                <div className="card-desc text-gray-400 mb-4 line-clamp-3">{project.description}</div>
-
-                {/* 技术栈 */}
-                <div className="card-tech">
-                  {project.tech.map((tech, i) => (
-                    <span key={tech}>
-                      {tech}
-                      {i < project.tech.length - 1 && ', '}
-                    </span>
-                  ))}
-                </div>
-              </motion.li>
-            ))}
-          </ul>
-        </div>
+                <div className="card-title">{key}</div>
+                <div className="card-desc">{projects[key].desc}</div>
+                <div className="card-tech">{projects[key].techStack}</div>
+              </li>
+            </FadeInSection>
+          ))}
+        </ul>
       </div>
-    </section>
+    </div>
   );
 };
 

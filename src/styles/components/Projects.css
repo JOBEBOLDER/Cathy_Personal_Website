@@ -1,106 +1,293 @@
-.projects-section {
-    padding: 8rem 0;
-    background: var(--dark-bg);
+#projects {
+  margin: auto;
+  padding-top: 100px;
+  max-width: 1000px;
+  min-height: 50vh;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(300px, 2fr));
+  grid-gap: 10px;
+}
+
+@media (max-width: 1080px) {
+  .projects-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+}
+
+.projects-card {
+  
+  position: relative;
+  cursor: default;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 2rem 3rem;
+  background-color: #1b2442;
+  border-radius: 16px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid transparent;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.projects-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  background-color: #3e4355;
+  border-color: var(--green-bright);
+  box-shadow: 
+    0 20px 25px -5px rgba(0, 0, 0, 0.2), 
+    0 10px 10px -5px rgba(0, 0, 0, 0.04),
+    0 0 0 1px var(--green-bright);
+}
+
+.projects-card:hover .folder-icon {
+  color: var(--green-bright);
+  transform: scale(1.1);
+}
+
+.projects-card:hover .card-title {
+  color: var(--green-bright);
+}
+
+.projects-card:hover .github-icon,
+.projects-card:hover .open-icon {
+  color: var(--green-bright);
+  transform: translateY(-2px);
+}
+
+.card-header {
+  margin-top: -20px;
+  display: flex;
+  padding: 1.25em 0 !important;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: none !important;
+}
+
+.folder-icon {
+  color: var(--green-bright);
+  transition: all 0.3s ease;
+}
+
+.github-icon {
+  margin-top: 6px;
+  transition: all 0.3s ease;
+  color: var(--slate);
+}
+
+.github-icon:hover {
+  color: var(--green-bright);
+  transform: scale(1.2);
+}
+
+.open-icon {
+  margin-left: 10px;
+  transition: all 0.3s ease;
+  color: var(--slate);
+}
+
+.open-icon:hover {
+  color: var(--green-bright);
+  transform: scale(1.2);
+}
+
+.card-title {
+  font-family: "NTR", sans-serif;
+  color: var(--lightest-slate);
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  transition: color 0.3s ease;
+}
+
+.card-desc {
+  font-family: "NTR", sans-serif;
+  color: var(--slate);
+  font-size: 18px;
+  padding-bottom: 40px;
+  line-height: 1.5;
+  flex-grow: 1;
+}
+
+.card-tech {
+  font-family: "NTR", sans-serif;
+  color: var(--slate);
+  font-size: 16px;
+  margin-top: auto;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.projects-card:hover .card-tech {
+  opacity: 1;
+}
+
+/* Spotlight carousel */
+.carousel.slide {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding-bottom: 60px;
+}
+
+.carousel-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.carousel-inner {
+  height: 400px;
+  border-radius: 24px;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+.carousel-inner:hover {
+  transform: scale(1.01);
+}
+
+.carousel-item {
+  position: relative;
+  height: 400px;
+}
+
+.carousel img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+  opacity: 0.9;
+  border-radius: 24px;
+}
+
+.carousel-caption {
+  font-family: "NTR", sans-serif;
+  max-width: 100%;
+  padding: 20px;
+  background-color: var(--light-navy);
+  border-radius: 16px;
+  border: 1px solid rgba(100, 255, 218, 0.1);
+  position: static;
+  transform: none;
+  text-align: left;
+}
+
+.carousel-caption h3 {
+  font-size: 38px;
+  font-weight: bold;
+  color: var(--lightest-slate);
+  margin-bottom: 20px;
+}
+
+.carousel-caption p {
+  font-family: "NTR", sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+  color: var(--lightest-slate);
+  margin-bottom: 15px;
+}
+
+.carousel-caption p.techStack {
+  font-family: "NTR", sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--green-bright);
+  margin-bottom: 20px;
+}
+
+.carousel-indicators {
+  bottom: 20px;
+}
+
+.carousel-indicators .active {
+  background-color: var(--green-bright);
+}
+
+.carousel-indicators button {
+  background-color: var(--slate);
+}
+
+/* Navigation arrows */
+.carousel-control-prev,
+.carousel-control-next {
+  color: var(--green-bright);
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* External links in carousel */
+.external-links {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.external-links a {
+  color: var(--slate);
+  transition: all 0.3s ease;
+}
+
+.external-links a:hover {
+  color: var(--green-bright);
+  transform: scale(1.2);
+}
+
+@media only screen and (max-width: 600px) {
+  #projects {
+    height: unset;
+    padding-left: 20px;
+    padding-right: 20px;
   }
   
-  .projects-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
+  .carousel.slide {
+    padding-bottom: 40px;
   }
   
-  .projects-title {
-    font-size: 3rem;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 1rem;
-    position: relative;
+  .carousel-container {
+    gap: 20px;
   }
   
-  .projects-title::after {
-    content: '';
-    position: absolute;
-    bottom: -0.5rem;
-    left: 0;
-    width: 100px;
-    height: 4px;
-    background: var(--primary-creative);
+  .carousel-inner {
+    height: 250px;
+  }
+  
+  .carousel-item {
+    height: 250px;
+  }
+  
+  .carousel-caption h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+  
+  .carousel-caption p {
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+  
+  .carousel-caption p.techStack {
+    font-size: 12px;
+    margin-bottom: 15px;
   }
   
   .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
-    margin-top: 4rem;
+    grid-template-columns: 1fr;
+    grid-gap: 15px;
   }
   
-  .project-card {
-    background: var(--dark-surface);
-    border-radius: var(--border-radius-lg);
-    padding: 2rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 1px solid var(--dark-card);
+  .projects-card {
+    padding: 2rem 2rem;
   }
   
-  .project-card:hover {
-    transform: translateY(-10px);
-    box-shadow: var(--shadow-lg);
+  .projects-card:hover {
+    transform: translateY(-4px) scale(1.01);
   }
-  
-  .project-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
-  }
-  
-  .project-title {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--white);
-  }
-  
-  .project-links {
-    display: flex;
-    gap: 1rem;
-  }
-  
-  .project-link {
-    color: var(--light-muted);
-    transition: color 0.3s ease;
-  }
-  
-  .project-link:hover {
-    color: var(--primary-electric);
-  }
-  
-  .project-description {
-    color: var(--light-muted);
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-  }
-  
-  .project-tech {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-  
-  .tech-tag {
-    background: var(--dark-card);
-    color: var(--primary-electric);
-    padding: 0.25rem 0.75rem;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 500;
-  }
-  
-  @media (max-width: 768px) {
-    .projects-grid {
-      grid-template-columns: 1fr;
-    }
-    
-    .projects-title {
-      font-size: 2rem;
-    }
-  }
+}

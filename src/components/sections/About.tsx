@@ -45,7 +45,7 @@ const About: React.FC = () => {
           {two}
         </div>
         <div className="about-image">
-          <img alt="Jieyao Chen" src="/asset/me2.jpg" />
+          <img alt="Jieyao Chen" src="/assets/me2.jpg" />
         </div>
       </div>
     </div>

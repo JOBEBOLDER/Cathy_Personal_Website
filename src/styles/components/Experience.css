@@ -1,198 +1,199 @@
-/* Experience组件样式 */
-.experience-section {
-  padding: 8rem 0;
-  background: var(--dark-bg);
+#experience {
+  padding: 80px 200px;
+  min-height: 100vh;
+  color: var(--lightest-slate);
 }
 
-.experience-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
+.section-header {
+  display: flex;
+  padding-bottom: 42px;
+  width: 100vw;
 }
 
-.experience-title {
-  font-size: 3rem;
-  font-weight: 700;
-  color: var(--white);
-  margin-bottom: 1rem;
-  position: relative;
+.section-header::after {
+  content: "";
+  display: block;
+  width: 300px;
+  margin-top: 39px;
+  height: 1px;
+  margin-left: 20px;
+  background-color: var(--lightest-navy);
 }
 
-.experience-title::after {
-  content: '';
-  position: absolute;
-  bottom: -0.5rem;
-  left: 0;
-  width: 100px;
-  height: 4px;
-  background: var(--primary-creative);
+.section-title {
+  font-family: "NTR", sans-serif;
+  color: var(--lightest-slate);
+  font-size: 46px;
+  font-weight: bold;
 }
 
-.experience-tabs {
+/* JobList 容器 */
+.joblist-container {
+  display: flex;
+  gap: 60px;
+  margin-top: 40px;
+}
+
+/* 左侧公司导航 */
+.joblist-sidebar {
+  min-width: 200px;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
 }
 
-.experience-tab {
-  width: 100%;
+.joblist-tab {
+  background: none;
+  border: none;
+  border-left: 2px solid var(--lightest-navy);
+  color: var(--slate);
+  font-family: "NTR", sans-serif;
+  font-size: 16px;
+  padding: 15px 20px;
   text-align: left;
-  padding: 1rem;
-  border-left: 2px solid var(--dark-card);
+  cursor: pointer;
   transition: all 0.3s ease;
-  background: transparent;
-  color: var(--light-muted);
-  font-size: 0.9rem;
+  outline: none;
+}
+
+.joblist-tab:hover {
+  background-color: rgba(100, 255, 218, 0.1);
+  color: var(--green);
+  border-left-color: var(--green);
+}
+
+.joblist-tab.active {
+  background-color: rgba(100, 255, 218, 0.1);
+  color: var(--green);
+  border-left-color: var(--green);
+}
+
+/* 右侧内容区域 */
+.joblist-content {
+  flex: 1;
+  max-width: 600px;
+}
+
+.joblist-job-header {
+  margin-bottom: 15px;
+}
+
+.joblist-job-title {
+  font-family: "NTR", sans-serif;
+  color: var(--lightest-slate);
+  font-size: 28px;
   font-weight: 600;
 }
 
-.experience-tab:hover {
-  border-left-color: var(--primary-creative);
-  color: var(--primary-creative);
-  background: rgba(74, 222, 128, 0.05);
+.joblist-job-company {
+  font-family: "NTR", sans-serif;
+  color: var(--green);
+  font-size: 28px;
+  font-weight: 600;
 }
 
-.experience-tab.active {
-  border-left-color: var(--primary-creative);
-  color: var(--primary-creative);
-  background: rgba(74, 222, 128, 0.1);
+.joblist-duration {
+  font-family: "JetBrains Mono", monospace;
+  color: var(--slate);
+  font-size: 14px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-.experience-content {
-  flex: 1;
-  padding-left: 2rem;
+.joblist-location {
+  color: var(--slate);
+  font-size: 14px;
+  margin-bottom: 25px;
 }
 
-.experience-header {
-  margin-bottom: 2rem;
+/* 工作描述列表 */
+.job-description {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 30px 0;
 }
 
-.experience-position {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: var(--white);
-  margin-bottom: 0.5rem;
-}
-
-.experience-company {
-  color: var(--primary-creative);
-}
-
-.experience-period {
-  color: var(--primary-electric);
-  font-family: var(--font-mono);
-  font-size: 0.9rem;
-  margin-bottom: 0.25rem;
-}
-
-.experience-location {
-  color: var(--light-muted);
-  font-size: 0.9rem;
-}
-
-.experience-responsibilities {
-  margin-bottom: 2rem;
-}
-
-.experience-responsibility {
-  display: flex;
-  align-items: flex-start;
-  margin-bottom: 1rem;
-  gap: 0.75rem;
-}
-
-.experience-responsibility::before {
-  content: '▹';
-  color: var(--primary-creative);
-  font-size: 1.2rem;
-  flex-shrink: 0;
-  margin-top: 0.1rem;
-}
-
-.experience-responsibility p {
-  color: var(--light-accent);
+.job-description li {
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 15px;
+  color: var(--slate);
   line-height: 1.6;
-  margin: 0;
+  font-size: 16px;
 }
 
-.experience-tech {
-  padding-top: 1rem;
+.job-description li::before {
+  content: "▹";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--green);
+  font-size: 18px;
 }
 
-.experience-tech-label {
-  color: var(--light-muted);
-  margin-bottom: 1rem;
-  font-size: 0.9rem;
+/* 技术栈部分 */
+.joblist-technologies {
+  margin-top: 30px;
 }
 
-.experience-tech-list {
+.joblist-technologies p {
+  color: var(--slate);
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.tech-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 8px;
 }
 
 .tech-tag {
-  background: rgba(34, 211, 238, 0.1);
-  color: var(--primary-electric);
-  padding: 0.25rem 0.75rem;
-  border-radius: 0.5rem;
-  font-size: 0.8rem;
-  font-family: var(--font-mono);
-  font-weight: 500;
+  background-color: rgba(100, 255, 218, 0.1);
+  color: var(--green);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+  border: 1px solid rgba(100, 255, 218, 0.2);
 }
 
-@media (max-width: 1024px) {
-  .experience-grid {
-    grid-template-columns: 1fr;
+/* 响应式设计 */
+@media only screen and (max-width: 900px) {
+  #experience {
+    padding: 40px 20px;
   }
   
-  .experience-content {
-    padding-left: 0;
-    padding-top: 2rem;
+  .joblist-container {
+    flex-direction: column;
+    gap: 30px;
   }
   
-  .experience-tabs {
+  .joblist-sidebar {
+    min-width: unset;
     flex-direction: row;
     overflow-x: auto;
-    gap: 0;
-  }
-  
-  .experience-tab {
     white-space: nowrap;
+  }
+  
+  .joblist-tab {
     border-left: none;
-    border-bottom: 2px solid var(--dark-card);
-    min-width: 150px;
+    border-bottom: 2px solid var(--lightest-navy);
+    white-space: nowrap;
+    min-width: 120px;
   }
   
-  .experience-tab:hover,
-  .experience-tab.active {
+  .joblist-tab:hover,
+  .joblist-tab.active {
     border-left: none;
-    border-bottom-color: var(--primary-creative);
-  }
-}
-
-@media (max-width: 768px) {
-  .experience-title {
-    font-size: 2rem;
+    border-bottom-color: var(--green);
   }
   
-  .experience-position {
-    font-size: 1.4rem;
+  .section-header::after {
+    display: none;
   }
   
-  .experience-tabs {
-    flex-direction: column;
-  }
-  
-  .experience-tab {
-    border-left: 2px solid var(--dark-card);
-    border-bottom: none;
-    min-width: auto;
-  }
-  
-  .experience-tab:hover,
-  .experience-tab.active {
-    border-left-color: var(--primary-creative);
-    border-bottom: none;
+  .section-title {
+    font-size: 32px;
   }
 } 

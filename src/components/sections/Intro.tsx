@@ -3,8 +3,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import WaveGrid from '../3d/WaveGrid';
+import "../../styles/components/Intro.css";
 
-const Hero = () => {
+const Intro = () => {
   const [displayText, setDisplayText] = useState('beautiful designs');
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
@@ -33,7 +34,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section id="intro" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-primary">
+    <section id="intro" className="min-h-screen flex items-center justify-center relative overflow-hidden">
       {/* 背景装饰 */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
@@ -72,10 +73,10 @@ const Hero = () => {
           transition={{ delay: 0.5, duration: 0.8 }}
           className="mb-6"
         >
-          <h1 className="text-5xl md:text-7xl font-bold leading-tight">
-            <span className="text-white">hi, </span>
-            <span className="text-green-400">jieyao</span>
-            <span className="text-white"> here.|</span>
+          <h1 className="intro-large-title">
+            <span className="intro-title">hi, </span>
+            <span className="intro-name">jieyao</span>
+            <span className="intro-title"> here.</span>
           </h1>
         </motion.div>
 
@@ -84,9 +85,8 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.6 }}
-          className="mb-8"
         >
-          <p className="text-xl md:text-2xl text-gray-300">
+          <p className="intro-subtitle">
             I create{' '}
             <motion.span
               key={displayText}
@@ -94,7 +94,7 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.5 }}
-              className="text-green-400"
+              className="intro-subtitlename"
             >
               {displayText}
             </motion.span>
@@ -109,7 +109,7 @@ const Hero = () => {
           transition={{ delay: 1.0, duration: 0.6 }}
           className="mb-10"
         >
-          <p className="text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed">
+          <p className="intro-desc">
             I&apos;m a software engineer from Boston, MA. I&apos;m fascinated by large-scale, 
             high-impact products and contributed to major feature launches in industry-leading 
             services as well as apps that have 100M+ installs.
@@ -126,9 +126,7 @@ const Hero = () => {
             href="mailto:chen.jieyao@northeastern.edu"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center px-16 py-12 border-2 border-green-400 text-green-400 
-                     hover:bg-green-400 hover:text-gray-900 transition-all duration-300 rounded-lg
-                     font-semibold text-lg shadow-lg hover:shadow-green-400/25"
+            className="intro-contact"
           >
             <span className="mr-2">📧</span>
             Say hi!
@@ -154,4 +152,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default Intro;
