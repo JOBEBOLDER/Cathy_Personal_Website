@@ -13,7 +13,7 @@
   color: var(--lightest-slate, #ccd6f6);
   text-align: center;
   font-size: 76px;
-  margin-top: -30px;
+
 }
 
 .cursor {
@@ -34,6 +34,7 @@
   font-family: "NTR", sans-serif;
   font-size: 86px;
   color: var(--lightest-slate, #ccd6f6);
+  
 }
 
 .intro-name {
@@ -41,6 +42,7 @@
   color: var(--green, #64ffda);
   font-weight: bold;
   font-size: 86px;
+  
 }
 
 .intro-subtitlename {
@@ -48,15 +50,20 @@
   color: var(--green, #64ffda);
   font-weight: bold;
   font-size: 30px;
+
+  
 }
 
 .intro-subtitle {
-  margin-top: -50px;
+  
   font-family: "NTR", sans-serif;
   color: var(--slate, #8892b0);
   text-align: center;
   font-weight: 300;
   font-size: 30px !important;
+  line-height: 5;
+  transform: none !important; 
+ 
 }
 
 .intro-desc {
@@ -65,8 +72,9 @@
   font-size: 22px;
   text-align: center;
   max-width: 600px;
-  padding-bottom: 50px;
+  padding-bottom: 30px;
   line-height: 1.6;
+  transform: none !important; /* 确保CSS不会覆盖动画的transform */
 }
 
 .intro-contact {
@@ -98,7 +106,7 @@
   --lightest-slate: #ccd6f6;
   --slate: #8892b0;
   --light-slate: #a8b2d1;
-  --green: #64ffda;
+  --green: #63ff9c;
   --green-tint: rgba(100, 255, 218, 0.1);
 }
 
@@ -145,8 +153,10 @@
 /* 自定义字体大小类 */
 .intro-large-title {
   font-size: 8rem !important;
-  line-height: 1.1 !important;
+  line-height: 0.9 !important;
   font-weight: bold !important;
+  transform: none !important; /* 确保CSS不会覆盖动画的transform */
+  margin-top: -20px;
 }
 
 @media (max-width: 768px) {

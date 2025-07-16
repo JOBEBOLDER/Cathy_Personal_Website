@@ -14,8 +14,8 @@ const About: React.FC = () => {
   
   const two = (
     <p>
-      Outside of work, I'm interested in following the developments of
-      science. I also play a lot of video games. And make TikToks.
+      Outside of work, I’m interested in following scientific developments. 
+      I also play tennis and piano, and sometimes I dance and paint as well.
     </p>
   );
 

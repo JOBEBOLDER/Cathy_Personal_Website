@@ -47,7 +47,7 @@
   border-left: 2px solid var(--lightest-navy);
   color: var(--slate);
   font-family: "NTR", sans-serif;
-  font-size: 16px;
+  font-size: 22px;
   padding: 15px 20px;
   text-align: left;
   cursor: pointer;
@@ -94,7 +94,7 @@
 .joblist-duration {
   font-family: "JetBrains Mono", monospace;
   color: var(--slate);
-  font-size: 14px;
+  font-size: 22px;
   margin-bottom: 8px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -102,7 +102,7 @@
 
 .joblist-location {
   color: var(--slate);
-  font-size: 14px;
+  font-size: 22px;
   margin-bottom: 25px;
 }
 
@@ -119,7 +119,7 @@
   margin-bottom: 15px;
   color: var(--slate);
   line-height: 1.6;
-  font-size: 16px;
+  font-size: 22px;
 }
 
 .job-description li::before {
@@ -128,7 +128,7 @@
   left: 0;
   top: 0;
   color: var(--green);
-  font-size: 18px;
+  font-size: 22px;
 }
 
 /* 技术栈部分 */
@@ -139,7 +139,7 @@
 .joblist-technologies p {
   color: var(--slate);
   margin-bottom: 15px;
-  font-size: 14px;
+  font-size: 18px;
 }
 
 .tech-tags {

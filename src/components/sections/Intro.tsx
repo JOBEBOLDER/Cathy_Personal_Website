@@ -62,16 +62,17 @@ const Intro = () => {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.5, ease: "easeOut" }}
+          className="mb-0"
         >
           <WaveGrid />
         </motion.div>
 
         {/* 主标题 */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.8 }}
-          className="mb-6"
+          initial={{ opacity: 0, y: 50, scale: 0.8 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ delay: 0.5, duration: 1.2, ease: "easeOut" }}
+          className="mb-0"
         >
           <h1 className="intro-large-title">
             <span className="intro-title">hi, </span>
@@ -82,9 +83,10 @@ const Intro = () => {
 
         {/* 副标题 */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.6 }}
+          initial={{ opacity: 0, y: 30, scale: 0.9 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ delay: 0.8, duration: 1.0, ease: "easeOut" }}
+          className="mb-0"
         >
           <p className="intro-subtitle">
             I create{' '}
@@ -95,6 +97,7 @@ const Intro = () => {
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.5 }}
               className="intro-subtitlename"
+              
             >
               {displayText}
             </motion.span>
@@ -104,10 +107,10 @@ const Intro = () => {
 
         {/* 描述 */}
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.0, duration: 0.6 }}
-          className="mb-10"
+          initial={{ opacity: 0, y: 30, scale: 0.9 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ delay: 1.0, duration: 1.0, ease: "easeOut" }}
+          className="mb-6"
         >
           <p className="intro-desc">
             I&apos;m a software engineer from Boston, MA. I&apos;m fascinated by large-scale, 
@@ -118,9 +121,10 @@ const Intro = () => {
 
         {/* CTA 按钮 */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.3, duration: 0.6 }}
+          initial={{ opacity: 0, y: 30, scale: 0.9 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ delay: 1.3, duration: 1.0, ease: "easeOut" }}
+          className="mb-4"
         >
           <motion.a
             href="mailto:chen.jieyao@northeastern.edu"
@@ -136,7 +140,7 @@ const Intro = () => {
 
       {/* 滚动提示 */}
       <motion.div
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        className="absolute bottom-2 left-1/2 transform -translate-x-1/2"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.5, duration: 0.6 }}
