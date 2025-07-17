@@ -1,17 +1,17 @@
-# 🎨 Jieyao Chen - Digital Artist Portfolio
+# Jieyao Chen Portfolio
 
 A modern, interactive portfolio website showcasing software engineering projects and digital art. Built with Next.js, React, Three.js, and Tailwind CSS.
 
 ![Portfolio Preview](https://via.placeholder.com/800x400/64ffda/0a192f?text=Jieyao+Chen+Portfolio)
 
-## ✨ Features
+## ✨ Features included:
 
 ### 🎯 Interactive Sections
-- **Hero Section**: Animated typewriter effect with "hi, Jieyao here" greeting
-- **About Section**: Personal photo with hover-to-reveal effect using green theme mask
-- **Experience Section**: Professional background and skills showcase
-- **Projects Section**: Interactive carousel with hover effects and project grid
-- **Contact Section**: Professional contact information and social links
+- **Hero Section**: 
+- **About Section**: 
+- **Experience Section**: 
+- **Projects Section**: 
+- **Contact Section**: 
 
 ### 🎨 Visual Effects
 - **3D Animations**: Three.js powered 3D scenes and wave grid animations
