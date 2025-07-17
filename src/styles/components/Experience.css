@@ -1,7 +1,17 @@
 #experience {
-  padding: 80px 200px;
-  min-height: 100vh;
+  padding: 40px 0 80px 0; /* 缩短上下内边距：上40px，下60px */
+  min-height: auto; /* 移除强制最小高度，让内容决定高度 */
   color: var(--lightest-slate);
+}
+
+#experience .section-header::after {
+  content: "";
+  display: block;
+  width: 380px; /* 更短 */
+  margin-top: 50px; /* 增加顶部间距，把线往下移 */
+  height: 1px;
+  margin-left: 20px;
+  background-color:  #3c4050
 }
 
 .section-header {
@@ -22,7 +32,7 @@
 
 .section-title {
   font-family: "NTR", sans-serif;
-  color: var(--lightest-slate);
+  color:  #ccd6f6;
   font-size: 46px;
   font-weight: bold;
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Github, ExternalLink, Folder } from 'lucide-react';
 import "../../styles/components/Projects.css";
@@ -32,6 +32,8 @@ interface Projects {
 
 const Projects = () => {
   const [currentProject, setCurrentProject] = useState(0);
+  const [isHovering, setIsHovering] = useState(false);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   // 主要项目（轮播展示）- Spotlight projects
   const spotlightProjects: SpotlightProjects = {
@@ -71,7 +73,7 @@ const Projects = () => {
     },
     "Personal Task Manager App.": {
       desc: "This app allows users to create, view, edit, and delete tasks, as well as mark tasks as completed or pending.",
-      techStack: "Typescript",
+      techStack: "Typescript, javascript, html, css",
       link: "https://github.com/JOBEBOLDER/Task_manager_app",
       open: "https://adam-ai.demo"
     },
@@ -79,7 +81,7 @@ const Projects = () => {
       desc: "Study Room Matcher is a prototype mobile app aimed at solving a common problem for students: finding the right virtual study environment.",
       techStack: "Prototype, Figma, React Native, Expo",
       link: "https://github.com/JOBEBOLDER/Studyroom_matcher",
-      open: ""
+      open: "https://www.figma.com/proto/Q3xL59s9fMxiS6NkXsiASZ/studyroom_matcher?node-id=44-332&p=f&t=12zY7N9VmHCoAmiH-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=44%3A285&show-proto-sidebar=1"
     },
     "High-Concurrency Commerce Platform": {
       desc: "developed high-performance and scalable backend solutions using Java, Redis, and Spring Boot to optimize real-time eCommerce transactions.",
@@ -103,14 +105,36 @@ const Projects = () => {
 
   const spotlightKeys = Object.keys(spotlightProjects);
 
-  // 自动轮播
-  useEffect(() => {
-    const interval = setInterval(() => {
+  // 开始自动轮播
+  const startAutoPlay = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+    intervalRef.current = setInterval(() => {
       setCurrentProject((prev) => (prev + 1) % spotlightKeys.length);
     }, 5000);
+  };
 
-    return () => clearInterval(interval);
-  }, [spotlightKeys.length]);
+  // 停止自动轮播
+  const stopAutoPlay = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+  };
+
+  // 自动轮播
+  useEffect(() => {
+    if (!isHovering) {
+      startAutoPlay();
+    }
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, [isHovering, spotlightKeys.length]);
 
   const nextProject = () => {
     setCurrentProject((prev) => (prev + 1) % spotlightKeys.length);
@@ -129,7 +153,11 @@ const Projects = () => {
       </div>
 
       {/* Spotlight Carousel */}
-      <div className="carousel slide">
+      <div 
+        className="carousel slide"
+        onMouseEnter={() => setIsHovering(true)}
+        onMouseLeave={() => setIsHovering(false)}
+      >
         <div className="carousel-container">
           {/* 图片容器 */}
           <div className="carousel-inner">
@@ -161,12 +189,32 @@ const Projects = () => {
                 left: '20px',
                 top: '50%',
                 transform: 'translateY(-50%)',
-                background: 'none',
-                border: 'none',
-                cursor: 'pointer'
+                background: 'rgba(0, 0, 0, 0.5)',
+                border: '2px solid rgba(255, 255, 255, 0.3)',
+                borderRadius: '50%',
+                width: '50px',
+                height: '50px',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                transition: 'all 0.3s ease',
+                color: 'white'
+              }}
+              onMouseEnter={(e) => {
+                const target = e.currentTarget as HTMLButtonElement;
+                target.style.background = 'rgba(34, 197, 94, 0.8)';
+                target.style.borderColor = '#22c55e';
+                target.style.transform = 'translateY(-50%) scale(1.1)';
+              }}
+              onMouseLeave={(e) => {
+                const target = e.currentTarget as HTMLButtonElement;
+                target.style.background = 'rgba(0, 0, 0, 0.5)';
+                target.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+                target.style.transform = 'translateY(-50%) scale(1)';
               }}
             >
-              <ChevronLeft size={32} />
+              <ChevronLeft size={24} />
             </button>
             <button
               onClick={nextProject}
@@ -176,12 +224,32 @@ const Projects = () => {
                 right: '20px',
                 top: '50%',
                 transform: 'translateY(-50%)',
-                background: 'none',
-                border: 'none',
-                cursor: 'pointer'
+                background: 'rgba(0, 0, 0, 0.5)',
+                border: '2px solid rgba(255, 255, 255, 0.3)',
+                borderRadius: '50%',
+                width: '50px',
+                height: '50px',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                transition: 'all 0.3s ease',
+                color: 'white'
+              }}
+              onMouseEnter={(e) => {
+                const target = e.currentTarget as HTMLButtonElement;
+                target.style.background = 'rgba(34, 197, 94, 0.8)';
+                target.style.borderColor = '#22c55e';
+                target.style.transform = 'translateY(-50%) scale(1.1)';
+              }}
+              onMouseLeave={(e) => {
+                const target = e.currentTarget as HTMLButtonElement;
+                target.style.background = 'rgba(0, 0, 0, 0.5)';
+                target.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+                target.style.transform = 'translateY(-50%) scale(1)';
               }}
             >
-              <ChevronRight size={32} />
+              <ChevronRight size={24} />
             </button>
 
             {/* Indicators */}

@@ -8,6 +8,27 @@ import "../../styles/components/Intro.css";
 const Intro = () => {
   const [displayText, setDisplayText] = useState('beautiful designs');
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [typedText, setTypedText] = useState('');
+  const fullText = "hi, Jieyao here.";
+
+  // 打字效果
+  useEffect(() => {
+    // 延迟开始打字效果，等待页面动画完成
+    const startDelay = setTimeout(() => {
+      let index = 0;
+      const timer = setInterval(() => {
+        setTypedText(fullText.slice(0, index));
+        index++;
+        if (index > fullText.length) {
+          clearInterval(timer);
+        }
+      }, 80); // 每80ms显示一个字符
+
+      return () => clearInterval(timer);
+    }, 1700); // 1.7秒后开始，配合motion动画
+
+    return () => clearTimeout(startDelay);
+  }, [fullText]);
 
   // 简单的文字切换效果
   useEffect(() => {
@@ -62,7 +83,6 @@ const Intro = () => {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.5, ease: "easeOut" }}
-          className="mb-0"
         >
           <WaveGrid />
         </motion.div>
@@ -72,12 +92,23 @@ const Intro = () => {
           initial={{ opacity: 0, y: 50, scale: 0.8 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ delay: 0.5, duration: 1.2, ease: "easeOut" }}
-          className="mb-0"
         >
           <h1 className="intro-large-title">
-            <span className="intro-title">hi, </span>
-            <span className="intro-name">jieyao</span>
-            <span className="intro-title"> here.</span>
+            {typedText.split('').map((char, index) => {
+              // 判断是否是 "jieyao" 部分（位置4-9）
+              const isNamePart = index >= 4 && index < 10;
+              return (
+                <span
+                  key={index}
+                  className={isNamePart ? 'intro-name' : 'intro-title'}
+                >
+                  {char}
+                </span>
+              );
+            })}
+            {typedText.length < fullText.length && (
+              <span className="cursor blinking">|</span>
+            )}
           </h1>
         </motion.div>
 
@@ -86,7 +117,6 @@ const Intro = () => {
           initial={{ opacity: 0, y: 30, scale: 0.9 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ delay: 0.8, duration: 1.0, ease: "easeOut" }}
-          className="mb-0"
         >
           <p className="intro-subtitle">
             I create{' '}
@@ -110,12 +140,11 @@ const Intro = () => {
           initial={{ opacity: 0, y: 30, scale: 0.9 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ delay: 1.0, duration: 1.0, ease: "easeOut" }}
-          className="mb-6"
+          className="mb-6 text-center"
         >
           <p className="intro-desc">
-            I&apos;m a software engineer from Boston, MA. I&apos;m fascinated by large-scale, 
-            high-impact products and contributed to major feature launches in industry-leading 
-            services as well as apps that have 100M+ installs.
+            My personality is like this flowing, algorithm-sculpted geometric mesh — a blend of logic and emotion, structured but never rigid, 
+            stretching freely but within the bounds of order.
           </p>
         </motion.div>
 
@@ -136,22 +165,22 @@ const Intro = () => {
             Say hi!
           </motion.a>
         </motion.div>
-      </div>
 
-      {/* 滚动提示 */}
-      <motion.div
-        className="absolute bottom-2 left-1/2 transform -translate-x-1/2"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.5, duration: 0.6 }}
-      >
-        <div className="flex flex-col items-center text-gray-400">
-          <span className="text-sm mb-2">Scroll to explore</span>
-          <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-gray-400 rounded-full mt-2 animate-bounce" />
+        {/* 滚动提示 */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.5, duration: 0.6 }}
+          className="mt-8"
+        >
+          <div className="flex flex-col items-center text-gray-400">
+            <span className="text-sm mb-2">Scroll to explore</span>
+            <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center">
+              <div className="w-1 h-3 bg-gray-400 rounded-full mt-2 animate-bounce" />
+            </div>
           </div>
-        </div>
-      </motion.div>
+        </motion.div>
+      </div>
     </section>
   );
 };

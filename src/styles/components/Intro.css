@@ -12,13 +12,15 @@
 .typist {
   color: var(--lightest-slate, #ccd6f6);
   text-align: center;
-  font-size: 76px;
+  font-size: 40px;
 
 }
 
 .cursor {
   color: var(--green, #64ffda);
   padding-left: 4px;
+  font-size: 0.5em; /* 调整光标大小，1.2倍当前字体大小 */
+  font-weight: lighter; /* 调整光标粗细 */
 }
 
 .cursor.blinking {
@@ -46,6 +48,7 @@
 }
 
 .intro-subtitlename {
+  padding-top: 5px;
   font-family: "NTR", sans-serif;
   color: var(--green, #64ffda);
   font-weight: bold;
@@ -55,26 +58,28 @@
 }
 
 .intro-subtitle {
-  
+  padding-top: 30px !important;
   font-family: "NTR", sans-serif;
   color: var(--slate, #8892b0);
   text-align: center;
   font-weight: 300;
   font-size: 30px !important;
-  line-height: 5;
+  line-height: 1.2;
   transform: none !important; 
  
 }
 
 .intro-desc {
+  padding-top: 5px;
   color: var(--slate, #8892b0);
   font-family: "NTR", sans-serif;
   font-size: 22px;
-  text-align: center;
+  text-align: center !important;
   max-width: 600px;
-  padding-bottom: 30px;
+  padding-bottom: 0px;
   line-height: 1.6;
   transform: none !important; /* 确保CSS不会覆盖动画的transform */
+  margin: 0 auto; /* 确保容器也居中 */
 }
 
 .intro-contact {
@@ -156,7 +161,8 @@
   line-height: 0.9 !important;
   font-weight: bold !important;
   transform: none !important; /* 确保CSS不会覆盖动画的transform */
-  margin-top: -20px;
+  margin-top: 0px;
+  margin-bottom: 20px !important;
 }
 
 @media (max-width: 768px) {

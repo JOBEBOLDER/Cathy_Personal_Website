@@ -15,13 +15,13 @@ const Navigation = () => {
 
   return (
     <nav className="navbar fixed top-0 w-full z-50 bg-slate-900/95 backdrop-blur-md border-b border-slate-700/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-8 sm:px-12 lg:px-16">
         <div className="flex justify-between items-center py-4">
           
           {/* Logo/Brand - 左侧 */}
-          <div className="navbar-brand">
+          <div className="navbar-brand pl-8">
             <a href="#" className="text-xl font-bold">
-              Jieyao Chen
+            Jieyao Chen
             </a>
           </div>
 
@@ -58,13 +58,13 @@ const Navigation = () => {
           </div>
 
           {/* 社交链接 - 右侧 */}
-          <div className="flex items-center space-x-6">
+          <div className="flex items-center space-x-6 pr-16">
             <a 
               href="mailto:chen.jieyao@northeastern.edu" 
               className="social-link p-2"
               target="_blank"
               rel="noopener noreferrer"
-            >
+          >
               <Mail size={20} />
             </a>
             <a 
@@ -78,19 +78,19 @@ const Navigation = () => {
             <a 
               href="https://www.linkedin.com/in/jieyao-chen/" 
               className="social-link p-2"
-              target="_blank"
-              rel="noopener noreferrer"
+                    target="_blank"
+                    rel="noopener noreferrer"
             >
               <Linkedin size={20} />
             </a>
             <a 
               href="#" 
-              className="social-link p-2"
-            >
+              className="social-link p-2 pr-4"
+                  >
               <Edit3 size={20} />
-            </a>
-          </div>
-        </div>
+                  </a>
+              </div>
+            </div>
       </div>
     </nav>
   );
