@@ -111,7 +111,7 @@
   max-width: 300px;
   margin-left: 68px;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: transform 0.1s ease;
 }
 
 .about-image:hover {

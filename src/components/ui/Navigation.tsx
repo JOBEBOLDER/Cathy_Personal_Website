@@ -58,7 +58,7 @@ const Navigation = () => {
           </div>
 
           {/* 社交链接 - 右侧 */}
-          <div className="flex items-center space-x-6 pr-16">
+          <div className="flex items-center space-x-6 pr-0">
             <a 
               href="mailto:chen.jieyao@northeastern.edu" 
               className="social-link p-2"
@@ -84,7 +84,7 @@ const Navigation = () => {
               <Linkedin size={20} />
             </a>
             <a 
-              href="#" 
+              href="https://kityo-artblog.tumblr.com/      " 
               className="social-link p-2 pr-4"
                   >
               <Edit3 size={20} />

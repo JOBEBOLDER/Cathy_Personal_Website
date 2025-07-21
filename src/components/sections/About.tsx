@@ -28,7 +28,7 @@ const About: React.FC = () => {
     "React.js",
     "Java",
     "Javascript ES6+",
-    "C#"
+    "Go"
   ];
 
   return (

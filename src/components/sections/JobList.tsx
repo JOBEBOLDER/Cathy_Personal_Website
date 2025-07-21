@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import FadeInSection from './FadeInSection';
+import { ExternalLink } from 'lucide-react';
 
 interface ExperienceItem {
   jobTitle: string;
@@ -131,6 +132,20 @@ const JobList = () => {
                   </span>
                 ))}
               </div>
+              {companies[activeJob] === 'SEMIR' && (
+                <div style={{ marginTop: 12 }}>
+                  Project video:{' '}
+                  <a
+                    href="https://youtu.be/JxoA-pgzxqA"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ color: '#64ffda', marginLeft: 4, verticalAlign: 'middle' }}
+                    title="Project Video"
+                  >
+                    <ExternalLink size={18} style={{ verticalAlign: 'middle' }} />
+                  </a>
+                </div>
+              )}
             </div>
           </motion.div>
         </AnimatePresence>
